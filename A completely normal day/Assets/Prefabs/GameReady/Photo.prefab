@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4450770296286981137}
   - component: {fileID: 5716973585712702895}
   - component: {fileID: 3020058451507690785}
+  - component: {fileID: 7632940945660959189}
   - component: {fileID: 6525429793749754417}
-  - component: {fileID: 2091502913259394405}
   m_Layer: 0
   m_Name: Photo
   m_TagString: Untagged
@@ -30,14 +30,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4483630270246209263}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.05, z: 1.1}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2826219477040101468}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &3402186296041096414
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6525429793749754417
+--- !u!114 &7632940945660959189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,24 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4483630270246209263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4490c31b47b8e34c9efb73c0435755d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  photoImage: {fileID: 3140959589288772395}
-  photoTexture: {fileID: 0}
-  testTexture: {fileID: 8600000, guid: 2eed5d287a48f1544a84e02510c1de54, type: 2}
-  fadeDuration: 10
-  fadeTime: 0
---- !u!114 &2091502913259394405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4483630270246209263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cb820318279ffc4783768f13d9341d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -171,7 +154,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -263,7 +246,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 1
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -305,6 +288,26 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  _photo: {fileID: 0}
+--- !u!114 &6525429793749754417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483630270246209263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4490c31b47b8e34c9efb73c0435755d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photoImage: {fileID: 3140959589288772395}
+  photoTexture: {fileID: 0}
+  testTexture: {fileID: 8600000, guid: 2eed5d287a48f1544a84e02510c1de54, type: 2}
+  _rigidbody: {fileID: 3020058451507690785}
+  _currentPolaroid: {fileID: 0}
+  fadeDuration: 10
+  fadeTime: 0
 --- !u!1 &5272849864560853542
 GameObject:
   m_ObjectHideFlags: 0

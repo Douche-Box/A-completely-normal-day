@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(XrPhotoInteractable))]
 public class Photo : MonoBehaviour
 {
     [SerializeField] RawImage photoImage;
     [SerializeField] Texture photoTexture;
 
     [SerializeField] Texture testTexture;
+
+    [SerializeField] Rigidbody _rigidbody;
+
+    [SerializeField] Polaroid _currentPolaroid;
+    public Polaroid CurrentPolaroid
+    { get { return _currentPolaroid; } set { _currentPolaroid = value; } }
+
 
     [SerializeField] float fadeDuration;
     [SerializeField] float fadeTime;
@@ -27,6 +35,8 @@ public class Photo : MonoBehaviour
 
         photoImage.texture = photoTexture;
 
+        _rigidbody.isKinematic = true;
+
         StartCoroutine(FadeFromBlackToWhite());
     }
 
@@ -35,6 +45,8 @@ public class Photo : MonoBehaviour
         photoImage.color = Color.black;
 
         photoImage.texture = null;
+
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Awake()
@@ -62,5 +74,14 @@ public class Photo : MonoBehaviour
         fadeTime = fadeDuration;
 
         photoImage.color = endColor;
+    }
+
+    public void DetachFromPolaroid()
+    {
+        if (_currentPolaroid != null)
+        {
+            _currentPolaroid.CurrentPhoto = null;
+            _currentPolaroid = null;
+        }
     }
 }

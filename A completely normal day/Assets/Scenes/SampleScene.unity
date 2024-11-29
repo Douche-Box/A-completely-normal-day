@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &29815776 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4858171547339613815, guid: 36a4331ae2b79db4b883917f86ab51a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6252663301820442858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &62774140
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +559,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: _pinch.m_Reference
+      value: 
+      objectReference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: _grip.m_Action.m_Name
+      value: Grip
+      objectReference: {fileID: 0}
+    - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: _pinch.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: _pinchValue.m_Reference
+      value: 
+      objectReference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: _gripValue.m_Action.m_Name
+      value: Grip Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
+        type: 3}
+      propertyPath: _pinchValue.m_UseReference
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 965968828503483670, guid: 65847589f926b734d9eaed6e25f0046b,
         type: 3}
@@ -1216,6 +1254,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
         type: 3}
+      propertyPath: _pinch.m_Reference
+      value: 
+      objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
+      propertyPath: _grip.m_Action.m_Name
+      value: Grip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
+      propertyPath: _pinch.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
+      propertyPath: _pinchValue.m_Reference
+      value: 
+      objectReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
+      propertyPath: _gripValue.m_Action.m_Name
+      value: Grip Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
+      propertyPath: _pinchValue.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925062890026449707, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+        type: 3}
       propertyPath: _gripAnimation.m_UseReference
       value: 0
       objectReference: {fileID: 0}
@@ -1524,6 +1594,7 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   _leftCameraHand: {fileID: 1181807765}
   _rightCameraHand: {fileID: 1039496064}
+  _polaroid: {fileID: 1833460388}
 --- !u!114 &1833460388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1542,6 +1613,22 @@ MonoBehaviour:
   _photoSpawnPoint: {fileID: 66085042}
   photoWidth: 512
   photoHeight: 512
+  _leftHand: {fileID: 0}
+  _rightHand: {fileID: 0}
+  _pinchValue:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pinch Value
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4e7bb9dd-1f05-4f97-97d8-422e52440e8f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  _canTakePhoto: 0
 --- !u!1 &2143703505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1640,6 @@ GameObject:
   - component: {fileID: 2143703506}
   - component: {fileID: 2143703509}
   - component: {fileID: 2143703508}
-  - component: {fileID: 2143703507}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1576,27 +1662,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1833460384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2143703507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143703505}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2143703508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1705,10 +1770,138 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _grip.m_Reference
+      value: 
+      objectReference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinch.m_Reference
+      value: 
+      objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _grip.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _grip.m_Action.m_Name
+      value: Grip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinch.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _gripValue.m_Reference
+      value: 
+      objectReference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinch.m_Action.m_Name
+      value: Pinch
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinchValue.m_Reference
+      value: 
+      objectReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _gripValue.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _gripValue.m_Action.m_Name
+      value: Grip Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinchValue.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1385697851449710525, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinchValue.m_Action.m_Name
+      value: Pinch Value
+      objectReference: {fileID: 0}
     - target: {fileID: 4914702057291796002, guid: 7db83bfee793eaa4eb9af489d20c750b,
         type: 3}
       propertyPath: m_Radius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _grip.m_Reference
+      value: 
+      objectReference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinch.m_Reference
+      value: 
+      objectReference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _grip.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _grip.m_Action.m_Name
+      value: Grip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinch.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _gripValue.m_Reference
+      value: 
+      objectReference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinch.m_Action.m_Name
+      value: Pinch
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinchValue.m_Reference
+      value: 
+      objectReference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+        type: 3}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _gripValue.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _gripValue.m_Action.m_Name
+      value: Grip Value
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinchValue.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4973450181495182539, guid: 7db83bfee793eaa4eb9af489d20c750b,
+        type: 3}
+      propertyPath: _pinchValue.m_Action.m_Name
+      value: Pinch Value
       objectReference: {fileID: 0}
     - target: {fileID: 7539879282580404085, guid: 7db83bfee793eaa4eb9af489d20c750b,
         type: 3}
@@ -1732,6 +1925,81 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_MovementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_ForceGravityOnDetach
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 29815776}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 29815776}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091502913259394405, guid: 36a4331ae2b79db4b883917f86ab51a0,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4483630270246209263, guid: 36a4331ae2b79db4b883917f86ab51a0,
         type: 3}
       propertyPath: m_Name
