@@ -1,8 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using System;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(XRPolaroidInteractable))]
@@ -24,21 +22,22 @@ public class Polaroid : MonoBehaviour
     [SerializeField] InputActionProperty _pinchValue;
 
     [SerializeField] bool _canTakePhoto;
+    [SerializeField] string _clueTag = "Clue";
 
     public event Action<GameObject> OnRightHandChanged;
     public event Action<GameObject> OnLeftHandChanged;
-
     public event Action<Photo> OnCurrentPhotoChanged;
 
     [SerializeField] Photo _currentPhoto;
     public Photo CurrentPhoto
     { get { return _currentPhoto; } set { _currentPhoto = value; OnCurrentPhotoChanged?.Invoke(value); } }
 
+    [SerializeField] List<GameObject> _objectsInView = new List<GameObject>();
+
     private void OnEnable()
     {
         OnRightHandChanged += OnRightHandChange;
         OnLeftHandChanged += OnLeftHandChange;
-
         OnCurrentPhotoChanged += OnCurrentPhotoChange;
 
         _pinchValue.action.started += OnPinch;
@@ -73,12 +72,10 @@ public class Polaroid : MonoBehaviour
 
     void OnLeftHandChange(GameObject leftController)
     {
-
     }
 
     void OnRightHandChange(GameObject rightController)
     {
-
     }
 
     void OnCurrentPhotoChange(Photo photo)
@@ -119,7 +116,77 @@ public class Polaroid : MonoBehaviour
             Photo newPhoto = Instantiate(_photoPrefab, _photoSpawnPoint.position, _photoPrefab.transform.rotation).GetComponent<Photo>();
             newPhoto.transform.SetParent(_photoSpawnPoint, true);
             newPhoto.CurrentPolaroid = this;
+
+            UpdateObjectsInView();
+
+            CheckForCluePoints(newPhoto);
+
             newPhoto.CreatePhoto(photoTexture);
         }
+    }
+
+    void CheckForCluePoints(Photo newPhoto) // CHECK IF THIS NEW VERSION WORKS
+    {
+        List<Clue> clues = new();
+        List<int> clueAmounts = new();
+
+        foreach (GameObject clueObject in _objectsInView)
+        {
+            if (clueObject != null)
+            {
+                Clue clue = clueObject.GetComponent<Clue>();
+
+
+                if (clue != null)
+                {
+                    int clueAmount = 0;
+
+                    clues.Add(clue);
+
+                    foreach (Transform cluePoint in clue.CluePoints)
+                    {
+                        Vector3 cluePointPosition = cluePoint.position;
+                        Vector3 directionToCamera = (_polaroidCamera.transform.position - cluePointPosition).normalized;
+
+                        Ray ray = new Ray(cluePointPosition, directionToCamera);
+                        if (Physics.Raycast(ray, out RaycastHit hit))
+                        {
+                            if (hit.collider != null && hit.collider.gameObject == gameObject)
+                            {
+                                clueAmount++;
+                            }
+                        }
+
+                        clueAmounts.Add(clueAmount);
+                    }
+                }
+            }
+        }
+
+        newPhoto.InitializePhoto(clues, clueAmounts);
+    }
+
+
+    public bool IsInCameraView(Camera camera, Vector3 worldPosition)
+    {
+        Vector3 viewportPos = camera.WorldToViewportPoint(worldPosition);
+        return viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1 && viewportPos.z > 0;
+    }
+
+    public void UpdateObjectsInView()
+    {
+        _objectsInView.Clear();
+
+        GameObject[] allTaggedObjects = GameObject.FindGameObjectsWithTag(_clueTag);
+
+        foreach (GameObject obj in allTaggedObjects)
+        {
+            if (obj != null && IsInCameraView(_polaroidCamera, obj.transform.position))
+            {
+                _objectsInView.Add(obj);
+            }
+        }
+
+        Debug.Log($"Objects in view: {_objectsInView.Count}");
     }
 }
