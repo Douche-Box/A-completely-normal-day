@@ -301,13 +301,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4490c31b47b8e34c9efb73c0435755d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photoImage: {fileID: 3140959589288772395}
-  photoTexture: {fileID: 0}
-  testTexture: {fileID: 8600000, guid: 2eed5d287a48f1544a84e02510c1de54, type: 2}
+  _photoImage: {fileID: 3140959589288772395}
+  _photoTexture: {fileID: 0}
+  _testTexture: {fileID: 0}
   _rigidbody: {fileID: 3020058451507690785}
   _currentPolaroid: {fileID: 0}
-  fadeDuration: 10
-  fadeTime: 0
+  _fadeDuration: 15
+  _fadeTime: 0
+  _clueInfos: []
 --- !u!1 &5272849864560853542
 GameObject:
   m_ObjectHideFlags: 0
