@@ -134,14 +134,18 @@ public class Polaroid : MonoBehaviour
         {
             if (clueObject != null)
             {
+                Debug.Log("Clue object != null");
                 Clue clue = clueObject.GetComponent<Clue>();
 
 
                 if (clue != null)
                 {
+                    Debug.Log("Clue != null");
+
                     int clueAmount = 0;
 
                     clues.Add(clue);
+                    Debug.Log("Clue added to Clues");
 
                     foreach (Transform cluePoint in clue.CluePoints)
                     {
@@ -156,9 +160,10 @@ public class Polaroid : MonoBehaviour
                                 clueAmount++;
                             }
                         }
-
-                        clueAmounts.Add(clueAmount);
                     }
+
+                    Debug.Log($"ClueAmount added to ClueAmounts with an amount of {clueAmount}");
+                    clueAmounts.Add(clueAmount);
                 }
             }
         }
