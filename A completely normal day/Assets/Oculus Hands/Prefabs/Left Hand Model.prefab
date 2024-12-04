@@ -387,32 +387,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handAnimator: {fileID: 109434732388006827}
-  _pinchAnimation:
+  _pinchValue:
     m_UseReference: 1
     m_Action:
-      m_Name: Pinch Animation
+      m_Name: Pinch Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: db6c8a95-a816-4f4e-af57-4dc298383eba
+      m_Id: e4c0bb6c-c5a7-425a-b297-f218f5858217
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  _gripAnimation:
+  _gripValue:
     m_UseReference: 1
     m_Action:
-      m_Name: Grip Animation
+      m_Name: Grip Value
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 1c83f731-cde4-4b98-90d2-744d59458fed
+      m_Id: be35272b-251d-4448-b8d5-a773e605cfcb
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  _pinch: 0
+  _grip: 0
+  _isPinching: 0
+  _isGripping: 0
 --- !u!1 &109434732395284511
 GameObject:
   m_ObjectHideFlags: 0
