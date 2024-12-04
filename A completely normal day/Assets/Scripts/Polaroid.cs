@@ -115,6 +115,7 @@ public class Polaroid : MonoBehaviour
 
             Photo newPhoto = Instantiate(_photoPrefab, _photoSpawnPoint.position, _photoPrefab.transform.rotation).GetComponent<Photo>();
             newPhoto.transform.SetParent(_photoSpawnPoint, true);
+            newPhoto.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
             newPhoto.CurrentPolaroid = this;
 
             UpdateObjectsInView();
