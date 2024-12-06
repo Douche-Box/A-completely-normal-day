@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -9,13 +7,16 @@ public class XRPolaroidInteractable : XRGrabInteractable
     [SerializeField] GameObject _leftCameraHand;
     [SerializeField] GameObject _rightCameraHand;
 
-    [SerializeField] Polaroid _polaroid;
+    [SerializeField] PolaroidCamera _polaroidCamera;
+
+    [SerializeField] Collider _collider;
 
     protected override void Awake()
     {
         base.Awake();
 
-        _polaroid = GetComponent<Polaroid>();
+        _polaroidCamera = GetComponent<PolaroidCamera>();
+        _collider = GetComponent<Collider>();
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -26,9 +27,9 @@ public class XRPolaroidInteractable : XRGrabInteractable
         {
             _leftCameraHand.SetActive(true);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(false);
-            if (_polaroid != null)
+            if (_polaroidCamera != null)
             {
-                _polaroid.LeftHand = args.interactorObject.transform.gameObject;
+                _polaroidCamera.LeftHand = args.interactorObject.transform.gameObject;
             }
 
         }
@@ -37,9 +38,9 @@ public class XRPolaroidInteractable : XRGrabInteractable
             _rightCameraHand.SetActive(true);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(false);
 
-            if (_polaroid != null)
+            if (_polaroidCamera != null)
             {
-                _polaroid.RightHand = args.interactorObject.transform.gameObject;
+                _polaroidCamera.RightHand = args.interactorObject.transform.gameObject;
             }
         }
     }
@@ -51,9 +52,9 @@ public class XRPolaroidInteractable : XRGrabInteractable
         {
             _leftCameraHand.SetActive(false);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(true);
-            if (_polaroid != null)
+            if (_polaroidCamera != null)
             {
-                _polaroid.LeftHand = null;
+                _polaroidCamera.LeftHand = null;
             }
 
         }
@@ -61,9 +62,9 @@ public class XRPolaroidInteractable : XRGrabInteractable
         {
             _rightCameraHand.SetActive(false);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(true);
-            if (_polaroid != null)
+            if (_polaroidCamera != null)
             {
-                _polaroid.RightHand = null;
+                _polaroidCamera.RightHand = null;
             }
         }
     }

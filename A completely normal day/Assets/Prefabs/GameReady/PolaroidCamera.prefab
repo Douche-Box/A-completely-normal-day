@@ -76,7 +76,8 @@ GameObject:
   - component: {fileID: 4240003134888899991}
   - component: {fileID: 5200325490653074236}
   - component: {fileID: 3799759987164682846}
-  - component: {fileID: 1777549593085587253}
+  - component: {fileID: 817238097535355712}
+  - component: {fileID: 1103988735010658643}
   - component: {fileID: 1006916374349238672}
   - component: {fileID: 5406698258810504504}
   - component: {fileID: 7199480305664683021}
@@ -177,7 +178,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.2019403, z: 0.16108644}
   m_Center: {x: 0, y: 0.0009701438, z: -0.0018600523}
---- !u!65 &1777549593085587253
+--- !u!65 &817238097535355712
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,8 +197,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.08666025, z: 0.32516837}
-  m_Center: {x: 0, y: -0.056669883, z: -0.002034545}
+  m_Size: {x: 0.2, y: 0.11976121, z: 0.07853496}
+  m_Center: {x: 0, y: -0.040119402, z: -0.12117261}
+--- !u!65 &1103988735010658643
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105236486470170321}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2, y: 0.079763874, z: 0.07916868}
+  m_Center: {x: 0, y: -0.06011807, z: 0.118304074}
 --- !u!54 &1006916374349238672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -335,7 +357,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -380,6 +402,7 @@ MonoBehaviour:
   _leftCameraHand: {fileID: 3621556195752356812}
   _rightCameraHand: {fileID: 8434885386447440852}
   _polaroid: {fileID: 7199480305664683021}
+  _collider: {fileID: 0}
 --- !u!114 &7199480305664683021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _polaroidCamera: {fileID: 1436277502519526681}
-  _photoPrefab: {fileID: 4483630270246209263, guid: 36a4331ae2b79db4b883917f86ab51a0,
+  _photoPrefab: {fileID: 6935148129463191497, guid: b7c009e8d9b19df4a9ce0bc7780a85ee,
     type: 3}
   _photoSpawnPoint: {fileID: 4307545310700872246}
   photoWidth: 512
@@ -417,6 +440,7 @@ MonoBehaviour:
   _clueTag: Clue
   _currentPhoto: {fileID: 0}
   _objectsInView: []
+  _frontCollider: {fileID: 1103988735010658643}
 --- !u!1 &3290869803657672220
 GameObject:
   m_ObjectHideFlags: 0

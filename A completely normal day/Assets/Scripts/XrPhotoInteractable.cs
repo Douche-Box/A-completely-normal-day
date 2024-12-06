@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(Photo))]
+[RequireComponent(typeof(Polaroid))]
 public class XrPhotoInteractable : XRGrabInteractable
 {
-    [SerializeField] Photo _photo;
+    [SerializeField] Polaroid _polaroid;
 
     protected override void Awake()
     {
         base.Awake();
 
-        _photo = GetComponent<Photo>();
+        _polaroid = GetComponent<Polaroid>();
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
 
-        _photo.DetachFromPolaroid();
+        _polaroid.DetachFromPolaroid();
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)

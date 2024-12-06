@@ -1,198 +1,143 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System;
 
-[RequireComponent(typeof(XRPolaroidInteractable))]
+[Serializable]
+public class ClueInfo
+{
+    public Clue clue;
+    public ClueData clueData;
+    public int cluePoints;
+    public float cluePercentage;
+    public bool validClue;
+
+    public ClueInfo(Clue clue, ClueData clueData, int cluePoints)
+    {
+        this.clue = clue;
+        this.clueData = clueData;
+        this.cluePoints = cluePoints;
+    }
+}
+
 public class Polaroid : MonoBehaviour
 {
-    [SerializeField] Camera _polaroidCamera;
-    [SerializeField] GameObject _photoPrefab;
-    [SerializeField] Transform _photoSpawnPoint;
-    [SerializeField] int photoWidth = 512;
-    [SerializeField] int photoHeight = 512;
+    [SerializeField] RawImage _photoImage;
+    [SerializeField] Texture _photoTexture;
 
-    [SerializeField] GameObject _leftHand;
-    public GameObject LeftHand
-    { get { return _leftHand; } set { _leftHand = value; OnLeftHandChanged?.Invoke(value); } }
-    [SerializeField] GameObject _rightHand;
-    public GameObject RightHand
-    { get { return _rightHand; } set { _rightHand = value; OnRightHandChanged?.Invoke(value); } }
+    [SerializeField] Texture _testTexture;
 
-    [SerializeField] InputActionProperty _pinchValue;
+    [SerializeField] Rigidbody _rigidbody;
 
-    [SerializeField] bool _canTakePhoto;
-    [SerializeField] string _clueTag = "Clue";
+    [SerializeField] PolaroidCamera _currentPolaroidCamera;
+    public PolaroidCamera CurrentPolaroidCamera
+    { get { return _currentPolaroidCamera; } set { _currentPolaroidCamera = value; } }
 
-    public event Action<GameObject> OnRightHandChanged;
-    public event Action<GameObject> OnLeftHandChanged;
-    public event Action<Photo> OnCurrentPhotoChanged;
+    [SerializeField] float _fadeDuration;
+    [SerializeField] float _fadeTime;
 
-    [SerializeField] Photo _currentPhoto;
-    public Photo CurrentPhoto
-    { get { return _currentPhoto; } set { _currentPhoto = value; OnCurrentPhotoChanged?.Invoke(value); } }
-
-    [SerializeField] List<GameObject> _objectsInView = new List<GameObject>();
-
-    private void OnEnable()
-    {
-        OnRightHandChanged += OnRightHandChange;
-        OnLeftHandChanged += OnLeftHandChange;
-        OnCurrentPhotoChanged += OnCurrentPhotoChange;
-
-        _pinchValue.action.started += OnPinch;
-        _pinchValue.action.performed += OnPinch;
-        _pinchValue.action.canceled += OnPinch;
-    }
-
-    private void OnDisable()
-    {
-        OnRightHandChanged -= OnRightHandChange;
-        OnLeftHandChanged -= OnLeftHandChange;
-
-        _pinchValue.action.started -= OnPinch;
-        _pinchValue.action.performed -= OnPinch;
-        _pinchValue.action.canceled -= OnPinch;
-    }
-
-    private void OnPinch(InputAction.CallbackContext context)
-    {
-        if (_rightHand != null)
-        {
-            float pinch = context.ReadValue<float>();
-
-            bool takePhoto = pinch > 0;
-
-            if (takePhoto)
-            {
-                TakePhoto();
-            }
-        }
-    }
-
-    void OnLeftHandChange(GameObject leftController)
-    {
-    }
-
-    void OnRightHandChange(GameObject rightController)
-    {
-    }
-
-    void OnCurrentPhotoChange(Photo photo)
-    {
-        if (photo == null)
-        {
-            _canTakePhoto = true;
-        }
-    }
+    [SerializeField] List<ClueInfo> _clueInfos = new();
 
     private void Awake()
     {
-        _canTakePhoto = true;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void TakePhoto()
+    private void Update()
     {
-        if (_canTakePhoto)
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            _canTakePhoto = false;
-            RenderTexture tempRenderTexture = new RenderTexture(photoWidth, photoHeight, 24);
-
-            RenderTexture originalRenderTexture = _polaroidCamera.targetTexture;
-            _polaroidCamera.targetTexture = tempRenderTexture;
-
-            _polaroidCamera.Render();
-
-            RenderTexture.active = tempRenderTexture;
-            Texture2D photoTexture = new Texture2D(photoWidth, photoHeight, TextureFormat.RGB24, false);
-            photoTexture.ReadPixels(new Rect(0, 0, photoWidth, photoHeight), 0, 0);
-            photoTexture.Apply();
-
-            _polaroidCamera.targetTexture = originalRenderTexture;
-            RenderTexture.active = null;
-
-            Destroy(tempRenderTexture);
-
-            Photo newPhoto = Instantiate(_photoPrefab, _photoSpawnPoint.position, _photoPrefab.transform.rotation).GetComponent<Photo>();
-            newPhoto.transform.SetParent(_photoSpawnPoint, true);
-            newPhoto.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-            newPhoto.CurrentPolaroid = this;
-
-            UpdateObjectsInView();
-
-            CheckForCluePoints(newPhoto);
-
-            newPhoto.CreatePhoto(photoTexture);
+            CreatePhoto(_testTexture);
         }
     }
 
-    void CheckForCluePoints(Photo newPhoto) // CHECK IF THIS NEW VERSION WORKS
+    public void CreatePhoto(Texture newPhotoTexture)
     {
-        List<Clue> clues = new();
-        List<int> clueAmounts = new();
+        _photoTexture = newPhotoTexture;
+        _photoImage.texture = _photoTexture;
+        _rigidbody.isKinematic = true;
+        StartCoroutine(FadeFromBlackToWhite());
+    }
 
-        foreach (GameObject clueObject in _objectsInView)
+    public void InitializePhoto(List<Clue> clues = null, List<int> cluePointsVisible = null)
+    {
+        _photoImage.color = Color.black;
+        _photoImage.texture = null;
+
+        if (clues.Count > 0 && cluePointsVisible.Count > 0)
         {
-            if (clueObject != null)
+            for (int i = 0; i < clues.Count; i++)
             {
-                Debug.Log("Clue object != null");
-                Clue clue = clueObject.GetComponent<Clue>();
-
-
-                if (clue != null)
+                if (clues[i] != null)
                 {
-                    Debug.Log("Clue != null");
-
-                    int clueAmount = 0;
-
-                    clues.Add(clue);
-                    Debug.Log("Clue added to Clues");
-
-                    foreach (Transform cluePoint in clue.CluePoints)
-                    {
-                        Vector3 cluePointPosition = cluePoint.position;
-                        Vector3 directionToCamera = (_polaroidCamera.transform.position - cluePointPosition).normalized;
-
-                        Ray ray = new Ray(cluePointPosition, directionToCamera);
-                        if (Physics.Raycast(ray, out RaycastHit hit))
-                        {
-                            if (hit.collider != null && hit.collider.gameObject == gameObject)
-                            {
-                                clueAmount++;
-                            }
-                        }
-                    }
-
-                    Debug.Log($"ClueAmount added to ClueAmounts with an amount of {clueAmount}");
-                    clueAmounts.Add(clueAmount);
+                    // Create a new ClueData instance and add it to the clueDatas list
+                    ClueInfo newClueData = new ClueInfo(clues[i], clues[i].ClueData, cluePointsVisible[i]);
+                    _clueInfos.Add(newClueData);
                 }
             }
+            CheckForPhotoClueQuality();
         }
-
-        newPhoto.InitializePhoto(clues, clueAmounts);
-    }
-
-
-    public bool IsInCameraView(Camera camera, Vector3 worldPosition)
-    {
-        Vector3 viewportPos = camera.WorldToViewportPoint(worldPosition);
-        return viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1 && viewportPos.z > 0;
-    }
-
-    public void UpdateObjectsInView()
-    {
-        _objectsInView.Clear();
-
-        GameObject[] allTaggedObjects = GameObject.FindGameObjectsWithTag(_clueTag);
-
-        foreach (GameObject obj in allTaggedObjects)
+        else
         {
-            if (obj != null && IsInCameraView(_polaroidCamera, obj.transform.position))
+            Debug.LogError("Clues or cluePointsVisible list is null or mismatched in length.");
+            for (int i = 0; i < clues.Count; i++)
             {
-                _objectsInView.Add(obj);
+                Debug.Log($"{clues[i].name}");
+            }
+            Debug.Log($"{clues} and {cluePointsVisible}");
+        }
+    }
+
+    void CheckForPhotoClueQuality()
+    {
+        for (int i = 0; i < _clueInfos.Count; i++)
+        {
+            _clueInfos[i].cluePercentage = GetPercentage(_clueInfos[i].clueData.cluePointsNeeded, _clueInfos[i].cluePoints);
+
+            if (_clueInfos[i].cluePercentage >= 100)
+            {
+                _clueInfos[i].validClue = true;
             }
         }
+    }
 
-        Debug.Log($"Objects in view: {_objectsInView.Count}");
+    float GetPercentage(float maxValue, float value)
+    {
+        Debug.Log($"{maxValue} {value}");
+        if (maxValue == 0)
+        {
+            Debug.Log("Max value cannot be 0");
+            return 0.0f;
+        }
+        Debug.Log($"{value / maxValue * 100}%");
+        return value / maxValue * 100;
+    }
+
+    private IEnumerator FadeFromBlackToWhite()
+    {
+        _fadeTime = 0f;
+        Color startColor = Color.black;
+        Color endColor = Color.white;
+
+        while (_fadeTime < _fadeDuration)
+        {
+            _photoImage.color = Color.Lerp(startColor, endColor, _fadeTime / _fadeDuration);
+            _fadeTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _fadeTime = _fadeDuration;
+        _photoImage.color = endColor;
+    }
+
+    public void DetachFromPolaroid()
+    {
+        if (_currentPolaroidCamera != null)
+        {
+            _currentPolaroidCamera.CurrentPhoto = null;
+            _currentPolaroidCamera.FrontCollider.isTrigger = false;
+            _currentPolaroidCamera = null;
+        }
     }
 }
