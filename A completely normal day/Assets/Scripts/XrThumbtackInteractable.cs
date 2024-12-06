@@ -71,7 +71,7 @@ public class XrThumbtackInteractable : XRGrabInteractable
 
         if (_photoToAttachTo != null)
         {
-            _photoToAttachTo.GetComponent<XrPhotoInteractable>().enabled = true;
+            _photoToAttachTo.GetComponent<XrPolaroidInteractable>().enabled = true;
         }
         else
         {

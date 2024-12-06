@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(XRPolaroidInteractable))]
+[RequireComponent(typeof(XRPolaroidCameraInteractable))]
 public class PolaroidCamera : MonoBehaviour
 {
     [SerializeField] Camera _polaroidCamera;

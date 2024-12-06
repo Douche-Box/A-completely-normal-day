@@ -18,9 +18,9 @@ public class Thumbtack : MonoBehaviour
         {
             _xrThumbtackInteractable.BoardToAttachTo = other.transform;
         }
-        if (other.CompareTag("Photo"))
+        if (other.CompareTag("Polaroid"))
         {
-            other.GetComponent<XrPhotoInteractable>().enabled = false;
+            other.GetComponent<XrPolaroidInteractable>().enabled = false;
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.transform.SetParent(GetComponentInParent<Transform>(), true);
 

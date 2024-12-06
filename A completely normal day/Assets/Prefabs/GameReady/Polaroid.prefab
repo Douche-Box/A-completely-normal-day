@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8302086963036831880}
   m_Layer: 0
   m_Name: Polaroid
-  m_TagString: Photo
+  m_TagString: Polaroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   _photoTexture: {fileID: 0}
   _testTexture: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _currentPolaroid: {fileID: 0}
+  _currentPolaroidCamera: {fileID: 0}
   _fadeDuration: 15
   _fadeTime: 0
   _clueInfos: []
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
-  _photo: {fileID: 0}
+  _polaroid: {fileID: 0}
 --- !u!1 &8558757926510899436
 GameObject:
   m_ObjectHideFlags: 0
