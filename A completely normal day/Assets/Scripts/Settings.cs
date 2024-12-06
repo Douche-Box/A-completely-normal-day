@@ -9,6 +9,8 @@ using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour
 {
+    [SerializeField] PlayerStats _playerStats;
+
     [Header("Audio")]
     [SerializeField] AudioMixer _audioMixer;
     [SerializeField] TMP_InputField _masterInput;
@@ -45,8 +47,15 @@ public class Settings : MonoBehaviour
         float sfxVol = PlayerPrefs.GetFloat("SfxVol", 1f);
         InitializeVolume("SFXVol", sfxVol, _sfxSlider, _sfxInput);
 
-        _snapOrSmooth = PlayerPrefs.GetInt("SnapOrSmooth") == 1;
-        
+        int snapOrSmooth = PlayerPrefs.GetInt("SnapOrSmooth");
+        _snapOrSmooth = snapOrSmooth == 1;
+
+        _snapAngle = PlayerPrefs.GetFloat("SnapValue");
+
+        _smoothSpeed = PlayerPrefs.GetFloat("SmoothValue");
+
+        _playerStats.UpdateSettings(snapOrSmooth, _snapAngle, _smoothSpeed);
+
         #endregion
     }
 
@@ -188,6 +197,42 @@ public class Settings : MonoBehaviour
         _audioMixer.SetFloat("SFXVol", Mathf.Log10(f) * 20);
 
         _sfxInput.text = (f * 100).ToString("0");
+    }
+
+    public void SnapOrSmoothBtn()
+    {
+        _snapOrSmooth = !_snapOrSmooth;
+
+        if (_snapOrSmooth)
+        {
+            PlayerPrefs.SetInt("SnapOrSmooth", 1);
+            _playerStats.UpdateSettings(1, -1, -1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SnapOrSmooth", 0);
+            _playerStats.UpdateSettings(0, -1, -1);
+        }
+
+    }
+
+    public void SetSnapTurnValue(float newSnapValue)
+    {
+        _snapAngle = newSnapValue;
+
+        PlayerPrefs.SetFloat("SnapValue", newSnapValue);
+
+        _playerStats.UpdateSettings(-1, _snapAngle, -1);
+
+    }
+
+    public void SetSmoothTurnValue(float newSmoothValue)
+    {
+        _smoothSpeed = newSmoothValue;
+
+        PlayerPrefs.SetFloat("SmoothValue", newSmoothValue);
+
+        _playerStats.UpdateSettings(-1, -1, _smoothSpeed);
     }
 
     #endregion

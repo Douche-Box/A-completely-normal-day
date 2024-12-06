@@ -74,4 +74,28 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Update current setting to not change settings use -1
+    /// </summary>
+    /// <param name="newSnapOrSmooth"></param>
+    /// <param name="newSnapValue"></param>
+    /// <param name="newSmoothValue"></param>
+    public void UpdateSettings(int newSnapOrSmooth = -1, float newSnapValue = -1, float newSmoothValue = -1)
+    {
+        if (newSnapOrSmooth != -1)
+        {
+            _snapOrSmoothTurn = newSnapOrSmooth == 1;
+        }
+
+        if (newSnapValue != -1)
+        {
+            _snapTurnAngle = newSnapValue;
+        }
+
+        if (newSmoothValue != -1)
+        {
+            _smoothTurnSpeed = newSmoothValue;
+        }
+    }
 }
