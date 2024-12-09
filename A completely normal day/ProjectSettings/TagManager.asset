@@ -8,6 +8,7 @@ TagManager:
   - BulletinBoard
   - Polaroid
   - Thumbtack
+  - Yarn
   layers:
   - Default
   - TransparentFX
