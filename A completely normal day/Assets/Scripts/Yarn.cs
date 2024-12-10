@@ -49,21 +49,20 @@ public class Yarn : MonoBehaviour
     {
         if (other.CompareTag("Thumbtack"))
         {
-            for (int i = 0; i < _connectedThumbtacks.Count; i++)
+            if (_connectedThumbtacks.Contains(other.transform))
             {
-                if (_connectedThumbtacks[i] == other.transform)
-                {
-                    _currentThumbtackToRemove = other.transform;
-                    return;
-                }
+                _currentThumbtackToRemove = other.transform;
+                _currentThumbtackToAdd = null;
+                return;
             }
+
             _currentThumbtackToAdd = other.transform;
         }
     }
 
     private void ConnectYarn()
     {
-        if (_currentThumbtackToAdd != null)
+        if (_currentThumbtackToAdd != null && _currentThumbtackToRemove == null)
         {
             if (_audioSource != null && _connectYarnClip != null)
             {
@@ -72,11 +71,11 @@ public class Yarn : MonoBehaviour
             }
 
             _lineRenderer.positionCount++;
-
             _connectedThumbtacks.Add(_currentThumbtackToAdd);
+            _currentThumbtackToAdd = null;
 
         }
-        else if (_currentThumbtackToRemove != null)
+        else if (_currentThumbtackToRemove != null && _currentThumbtackToAdd == null)
         {
             if (_audioSource != null && _disconnectYarnClip != null)
             {
@@ -85,8 +84,8 @@ public class Yarn : MonoBehaviour
             }
 
             _lineRenderer.positionCount--;
-
             _connectedThumbtacks.Remove(_currentThumbtackToRemove);
+            _currentThumbtackToRemove = null;
         }
     }
 }

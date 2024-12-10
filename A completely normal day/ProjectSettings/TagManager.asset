@@ -10,6 +10,7 @@ TagManager:
   - Thumbtack
   - Yarn
   - Climbable
+  - Ladder
   layers:
   - Default
   - TransparentFX
