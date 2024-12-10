@@ -19,6 +19,11 @@ public class PolaroidCamera : MonoBehaviour
     public GameObject RightHand
     { get { return _rightHand; } set { _rightHand = value; OnRightHandChanged?.Invoke(value); } }
 
+    [SerializeField] AudioSource _audioSource;
+
+    [SerializeField] AudioClip _takePhotoClip;
+    [SerializeField] AudioClip _failTakePhotoClip;
+
     [SerializeField] InputActionProperty _pinchValue;
 
     [SerializeField] bool _canTakePhoto;
@@ -74,13 +79,9 @@ public class PolaroidCamera : MonoBehaviour
         }
     }
 
-    void OnLeftHandChange(GameObject leftController)
-    {
-    }
+    void OnLeftHandChange(GameObject leftController) { }
 
-    void OnRightHandChange(GameObject rightController)
-    {
-    }
+    void OnRightHandChange(GameObject rightController) { }
 
     void OnCurrentPhotoChange(Polaroid polaroid)
     {
@@ -99,6 +100,12 @@ public class PolaroidCamera : MonoBehaviour
     {
         if (_canTakePhoto)
         {
+            if (_audioSource != null && _takePhotoClip != null)
+            {
+                _audioSource.clip = _takePhotoClip;
+                _audioSource.Play();
+            }
+
             _canTakePhoto = false;
             RenderTexture tempRenderTexture = new RenderTexture(photoWidth, photoHeight, 24);
 
@@ -132,9 +139,14 @@ public class PolaroidCamera : MonoBehaviour
 
             polaroid.CreatePhoto(photoTexture);
         }
+        else if (_audioSource != null && _failTakePhotoClip != null)
+        {
+            _audioSource.clip = _failTakePhotoClip;
+            _audioSource.Play();
+        }
     }
 
-    void CheckForCluePoints(Polaroid newPolaroid) // CHECK IF THIS NEW VERSION WORKS
+    void CheckForCluePoints(Polaroid newPolaroid)
     {
         List<Clue> clues = new();
         List<int> clueAmounts = new();
@@ -143,18 +155,13 @@ public class PolaroidCamera : MonoBehaviour
         {
             if (clueObject != null)
             {
-                Debug.Log("Clue object != null");
                 Clue clue = clueObject.GetComponent<Clue>();
-
 
                 if (clue != null)
                 {
-                    Debug.Log("Clue != null");
-
                     int clueAmount = 0;
 
                     clues.Add(clue);
-                    Debug.Log("Clue added to Clues");
 
                     foreach (Transform cluePoint in clue.CluePoints)
                     {
@@ -171,12 +178,10 @@ public class PolaroidCamera : MonoBehaviour
                         }
                     }
 
-                    Debug.Log($"ClueAmount added to ClueAmounts with an amount of {clueAmount}");
                     clueAmounts.Add(clueAmount);
                 }
             }
         }
-
         newPolaroid.InitializePhoto(clues, clueAmounts);
     }
 
@@ -200,7 +205,5 @@ public class PolaroidCamera : MonoBehaviour
                 _objectsInView.Add(obj);
             }
         }
-
-        Debug.Log($"Objects in view: {_objectsInView.Count}");
     }
 }

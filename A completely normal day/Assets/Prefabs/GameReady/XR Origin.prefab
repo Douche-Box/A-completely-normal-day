@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2248702057529062898}
   - component: {fileID: 4207385883927145586}
-  - component: {fileID: 1508780098310561773}
+  - component: {fileID: 864267266287601365}
   - component: {fileID: 1017940959105396015}
   m_Layer: 0
-  m_Name: Right Controller
+  m_Name: RightHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
     m_Reference: {fileID: -6447266317303757838, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
---- !u!114 &1508780098310561773
+--- !u!114 &864267266287601365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799853028585360664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
+  m_Script: {fileID: 11500000, guid: 31d74489e67136345a407413a55f43d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 7
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_SelectActionTrigger: 0
+  m_SelectActionTrigger: 1
   m_HideControllerOnSelect: 0
   m_AllowHoveredActivate: 0
   m_TargetPriorityMode: 0
@@ -368,6 +368,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_PhysicsTriggerInteraction: 1
+  _controllerName: 
+  _gripValue:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip Value
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a56da653-39ba-4b1e-90c1-5580b52932b2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  _isGripping: 0
+  canClimb: 0
+  canMove: 0
+  canTurn: 0
 --- !u!135 &1017940959105396015
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -646,10 +664,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3620220350243815635}
   - component: {fileID: 2487088654640983527}
+  - component: {fileID: 5285442872961578304}
   - component: {fileID: 7645058329770466809}
-  - component: {fileID: 7703985288947830032}
   m_Layer: 0
-  m_Name: Left Controller
+  m_Name: LeftHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -914,28 +932,7 @@ MonoBehaviour:
     m_Reference: {fileID: -1636515391019944688, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
---- !u!135 &7645058329770466809
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4533328792149493293}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7703985288947830032
+--- !u!114 &5285442872961578304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -944,7 +941,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4533328792149493293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
+  m_Script: {fileID: 11500000, guid: 31d74489e67136345a407413a55f43d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -952,7 +949,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 7
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -1025,6 +1022,45 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_PhysicsTriggerInteraction: 1
+  _controllerName: 
+  _gripValue:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip Value
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 39bbbfda-3985-4498-8f6f-273be60de9d7
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  _isGripping: 0
+  canClimb: 0
+  canMove: 0
+  canTurn: 0
+--- !u!135 &7645058329770466809
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4533328792149493293}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7539879282580404085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1078,7 @@ GameObject:
   - component: {fileID: 4333516616017684766}
   - component: {fileID: 4914702057291796002}
   - component: {fileID: 8903367926293159023}
+  - component: {fileID: 1175465928830488749}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -1278,6 +1315,84 @@ MonoBehaviour:
   m_LocomotionProvider: {fileID: 1582329838895146737}
   m_MinHeight: 0
   m_MaxHeight: Infinity
+--- !u!114 &1175465928830488749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539879282580404085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: face60358fc14af45b3373094ec3f333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charachter: {fileID: 4914702057291796002}
+  movementProvider: {fileID: 4333516616017684766}
+  _snapTurnProvider: {fileID: 1582329838895146737}
+  _smoothTurnProvider: {fileID: 8436308174749103348}
+  velocityLeft:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Velocity Left
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 48597b27-47e4-4be1-9457-e970ef8138c6
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6296635906381073562, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  velocityRight:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Velocity Right
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: fa7036da-7a99-43d5-83a7-efe1581f26f8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6630085448989967852, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  gripLeft:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip Left
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 385126d9-93c8-448d-85c3-3aa9d5fe468b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  gripRight:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip Right
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a509e204-34b4-42ce-aefe-fc32a10247e3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  gripLeftInput: 0
+  gripRightInput: 0
+  _rightActive: 0
+  _leftActive: 0
+  extrainteractorLeft: {fileID: 5285442872961578304}
+  extrainteractorRight: {fileID: 864267266287601365}
+  isStunned: 0
+  stunTime: 0
+  stunDelay: 0
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &8985555861801789859
 GameObject:
   m_ObjectHideFlags: 0

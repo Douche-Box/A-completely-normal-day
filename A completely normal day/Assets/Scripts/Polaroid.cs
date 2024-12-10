@@ -39,6 +39,10 @@ public class Polaroid : MonoBehaviour
 
     [SerializeField] List<ClueInfo> _clueInfos = new();
 
+    [SerializeField] AudioSource _audioSource;
+
+    [SerializeField] AudioClip _createPhotoClip;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -62,6 +66,9 @@ public class Polaroid : MonoBehaviour
 
     public void InitializePhoto(List<Clue> clues = null, List<int> cluePointsVisible = null)
     {
+        _audioSource.clip = _createPhotoClip;
+        _audioSource.Play();
+
         _photoImage.color = Color.black;
         _photoImage.texture = null;
 
@@ -71,7 +78,6 @@ public class Polaroid : MonoBehaviour
             {
                 if (clues[i] != null)
                 {
-                    // Create a new ClueData instance and add it to the clueDatas list
                     ClueInfo newClueData = new ClueInfo(clues[i], clues[i].ClueData, cluePointsVisible[i]);
                     _clueInfos.Add(newClueData);
                 }
@@ -81,6 +87,7 @@ public class Polaroid : MonoBehaviour
         else
         {
             Debug.LogError("Clues or cluePointsVisible list is null or mismatched in length.");
+
             for (int i = 0; i < clues.Count; i++)
             {
                 Debug.Log($"{clues[i].name}");

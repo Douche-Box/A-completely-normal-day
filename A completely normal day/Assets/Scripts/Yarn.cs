@@ -7,9 +7,9 @@ public class Yarn : MonoBehaviour
 {
     [SerializeField] LineRenderer _lineRenderer;
 
-    [SerializeField] int _currentLinerendererIndex;
+    [SerializeField] Transform _currentThumbtackToAdd;
+    [SerializeField] Transform _currentThumbtackToRemove;
 
-    [SerializeField] Transform _currentThumbtack;
     [SerializeField] List<Transform> _connectedThumbtacks;
 
     [SerializeField] InputActionProperty _pinchValue;
@@ -17,33 +17,28 @@ public class Yarn : MonoBehaviour
     [SerializeField] float _pinch;
     [SerializeField] bool _isPinching;
 
+    [SerializeField] AudioSource _audioSource;
+
+    [SerializeField] AudioClip _connectYarnClip;
+    [SerializeField] AudioClip _disconnectYarnClip;
+
     private void OnEnable()
     {
         _pinchValue.action.started += OnPinch;
-        // _pinchValue.action.performed += OnPinch;
-        // _pinchValue.action.canceled += OnPinch;
     }
 
     private void OnDisable()
     {
         _pinchValue.action.started -= OnPinch;
-        // _pinchValue.action.performed -= OnPinch;
-        // _pinchValue.action.canceled -= OnPinch;
     }
 
     private void OnPinch(InputAction.CallbackContext context)
     {
-        // _pinch = context.ReadValue<float>();
-
-        // _isPinching = _pinch > 0;
-
         ConnectYarn();
     }
 
     private void Update()
     {
-        // _lineRenderer.SetPosition(0, transform.position);
-
         for (int i = 0; i < _connectedThumbtacks.Count; i++)
         {
             _lineRenderer.SetPosition(i, _connectedThumbtacks[i].position);
@@ -54,19 +49,44 @@ public class Yarn : MonoBehaviour
     {
         if (other.CompareTag("Thumbtack"))
         {
-            _currentThumbtack = other.transform;
+            for (int i = 0; i < _connectedThumbtacks.Count; i++)
+            {
+                if (_connectedThumbtacks[i] == other.transform)
+                {
+                    _currentThumbtackToRemove = other.transform;
+                    return;
+                }
+            }
+            _currentThumbtackToAdd = other.transform;
         }
     }
 
     private void ConnectYarn()
     {
-        if (_currentThumbtack != null)
+        if (_currentThumbtackToAdd != null)
         {
+            if (_audioSource != null && _connectYarnClip != null)
+            {
+                _audioSource.clip = _connectYarnClip;
+                _audioSource.Play();
+            }
+
             _lineRenderer.positionCount++;
 
-            _currentLinerendererIndex = _lineRenderer.positionCount - 1;
+            _connectedThumbtacks.Add(_currentThumbtackToAdd);
 
-            _connectedThumbtacks.Add(_currentThumbtack);
+        }
+        else if (_currentThumbtackToRemove != null)
+        {
+            if (_audioSource != null && _disconnectYarnClip != null)
+            {
+                _audioSource.clip = _disconnectYarnClip;
+                _audioSource.Play();
+            }
+
+            _lineRenderer.positionCount--;
+
+            _connectedThumbtacks.Remove(_currentThumbtackToRemove);
         }
     }
 }

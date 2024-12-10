@@ -9,6 +9,7 @@ TagManager:
   - Polaroid
   - Thumbtack
   - Yarn
+  - Climbable
   layers:
   - Default
   - TransparentFX
