@@ -5,12 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Yarn : MonoBehaviour
 {
-    [SerializeField] LineRenderer _lineRenderer;
-
-    [SerializeField] Transform _currentThumbtackToAdd;
-    [SerializeField] Transform _currentThumbtackToRemove;
-
-    [SerializeField] List<Transform> _connectedThumbtacks;
+    [SerializeField] Transform _currentThumbtack;
+    [SerializeField] GameObject _currentYarnLine;
 
     [SerializeField] InputActionProperty _pinchValue;
 
@@ -22,26 +18,38 @@ public class Yarn : MonoBehaviour
     [SerializeField] AudioClip _connectYarnClip;
     [SerializeField] AudioClip _disconnectYarnClip;
 
+    [SerializeField] Transform _bulletinBoard;
+
+    [SerializeField] GameObject _yarnLinePrefab;
+
     private void OnEnable()
     {
         _pinchValue.action.started += OnPinch;
+        _pinchValue.action.performed += OnPinch;
+        _pinchValue.action.canceled += OnPinch;
     }
 
     private void OnDisable()
     {
         _pinchValue.action.started -= OnPinch;
+        _pinchValue.action.performed -= OnPinch;
+        _pinchValue.action.canceled -= OnPinch;
     }
 
     private void OnPinch(InputAction.CallbackContext context)
     {
-        ConnectYarn();
+        _pinch = context.ReadValue<float>();
+
+        _isPinching = _pinch == 1f;
+
+
     }
 
     private void Update()
     {
-        for (int i = 0; i < _connectedThumbtacks.Count; i++)
+        if (_isPinching)
         {
-            _lineRenderer.SetPosition(i, _connectedThumbtacks[i].position);
+            ConnectYarn();
         }
     }
 
@@ -49,43 +57,46 @@ public class Yarn : MonoBehaviour
     {
         if (other.CompareTag("Thumbtack"))
         {
-            if (_connectedThumbtacks.Contains(other.transform))
-            {
-                _currentThumbtackToRemove = other.transform;
-                _currentThumbtackToAdd = null;
-                return;
-            }
-
-            _currentThumbtackToAdd = other.transform;
+            _currentThumbtack = other.transform;
         }
     }
 
     private void ConnectYarn()
     {
-        if (_currentThumbtackToAdd != null && _currentThumbtackToRemove == null)
+        if (_currentThumbtack != null)
         {
-            if (_audioSource != null && _connectYarnClip != null)
+            if (_currentThumbtack.GetComponentInChildren<Thumbtack>().YarnLine == null)
             {
-                _audioSource.clip = _connectYarnClip;
-                _audioSource.Play();
+                if (_audioSource != null && _connectYarnClip != null)
+                {
+                    _audioSource.clip = _connectYarnClip;
+                    _audioSource.Play();
+                }
+
+                if (_currentYarnLine == null)
+                {
+                    GameObject newYarnLine = Instantiate(_yarnLinePrefab, _bulletinBoard);
+
+                    newYarnLine.GetComponent<YarnLine>().AttachOrDetachThumbtack(_currentThumbtack);
+
+                    _currentYarnLine = newYarnLine;
+                }
+                else
+                {
+                    _currentYarnLine.GetComponent<YarnLine>().AttachOrDetachThumbtack(_currentThumbtack);
+                }
+
+                _currentThumbtack = null;
+
             }
-
-            _lineRenderer.positionCount++;
-            _connectedThumbtacks.Add(_currentThumbtackToAdd);
-            _currentThumbtackToAdd = null;
-
-        }
-        else if (_currentThumbtackToRemove != null && _currentThumbtackToAdd == null)
-        {
-            if (_audioSource != null && _disconnectYarnClip != null)
+            else
             {
-                _audioSource.clip = _disconnectYarnClip;
-                _audioSource.Play();
-            }
+                _currentYarnLine = _currentThumbtack.GetComponentInChildren<Thumbtack>().YarnLine.gameObject;
 
-            _lineRenderer.positionCount--;
-            _connectedThumbtacks.Remove(_currentThumbtackToRemove);
-            _currentThumbtackToRemove = null;
+                _currentYarnLine.GetComponent<YarnLine>().AttachOrDetachThumbtack(_currentThumbtack);
+
+                _currentThumbtack = null;
+            }
         }
     }
 }

@@ -43,17 +43,11 @@ public class Polaroid : MonoBehaviour
 
     [SerializeField] AudioClip _createPhotoClip;
 
+    [SerializeField] List<Polaroid> _connectedPolaroids = new();
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            CreatePhoto(_testTexture);
-        }
     }
 
     public void CreatePhoto(Texture newPhotoTexture)
@@ -66,8 +60,11 @@ public class Polaroid : MonoBehaviour
 
     public void InitializePhoto(List<Clue> clues = null, List<int> cluePointsVisible = null)
     {
-        _audioSource.clip = _createPhotoClip;
-        _audioSource.Play();
+        if (_audioSource != null && _createPhotoClip != null)
+        {
+            _audioSource.clip = _createPhotoClip;
+            _audioSource.Play();
+        }
 
         _photoImage.color = Color.black;
         _photoImage.texture = null;

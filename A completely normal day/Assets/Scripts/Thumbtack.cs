@@ -7,6 +7,10 @@ public class Thumbtack : MonoBehaviour
 {
     [SerializeField] XrThumbtackInteractable _xrThumbtackInteractable;
 
+    [SerializeField] YarnLine _yarnLine;
+    public YarnLine YarnLine
+    { get { return _yarnLine; } }
+
     private void Awake()
     {
         _xrThumbtackInteractable = GetComponentInParent<XrThumbtackInteractable>();

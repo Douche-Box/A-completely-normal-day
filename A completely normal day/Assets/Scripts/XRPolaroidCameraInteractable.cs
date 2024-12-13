@@ -23,7 +23,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
     {
         base.OnSelectEntered(args);
 
-        if (args.interactorObject.transform.name == "Left Controller")
+        if (args.interactorObject.transform.name == "LeftHand Controller")
         {
             _leftCameraHand.SetActive(true);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(false);
@@ -33,7 +33,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
             }
 
         }
-        else if (args.interactorObject.transform.name == "Right Controller")
+        else if (args.interactorObject.transform.name == "RightHand Controller")
         {
             _rightCameraHand.SetActive(true);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(false);
@@ -48,7 +48,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
     {
         base.OnSelectExited(args);
 
-        if (args.interactorObject.transform.name == "Left Controller")
+        if (args.interactorObject.transform.name == "LeftHand Controller")
         {
             _leftCameraHand.SetActive(false);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -58,7 +58,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
             }
 
         }
-        else if (args.interactorObject.transform.name == "Right Controller")
+        else if (args.interactorObject.transform.name == "RightHand Controller")
         {
             _rightCameraHand.SetActive(false);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(true);

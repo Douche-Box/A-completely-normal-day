@@ -261,6 +261,10 @@ MonoBehaviour:
   _fadeDuration: 15
   _fadeTime: 0
   _clueInfos: []
+  _audioSource: {fileID: 0}
+  _createPhotoClip: {fileID: 0}
+  _yarnLine: {fileID: 0}
+  _connectedPolaroids: []
 --- !u!114 &8302086963036831880
 MonoBehaviour:
   m_ObjectHideFlags: 0
