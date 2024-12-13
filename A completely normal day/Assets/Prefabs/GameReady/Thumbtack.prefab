@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 666774789480067513}
   - component: {fileID: 707443208292086184}
   m_Layer: 0
-  m_Name: Thumbtack 1
+  m_Name: Thumbtack
   m_TagString: Thumbtack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
