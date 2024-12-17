@@ -8,6 +8,8 @@ public class YarnLine : MonoBehaviour
 
     [SerializeField] List<Transform> _connectedThumbtacks = new();
 
+    [SerializeField] Transform _previousThumbtack;
+
     private void Update()
     {
         for (int i = 0; i < _connectedThumbtacks.Count; i++)
@@ -16,29 +18,44 @@ public class YarnLine : MonoBehaviour
         }
     }
 
-    public void AttachOrDetachThumbtack(Transform newThumbtack)
+    public void AttachThumbtack(Transform thumbtackToAttach)
     {
-        if (_connectedThumbtacks.Contains(newThumbtack))
+        if (_previousThumbtack != null)
         {
-            DetachThumbtack(newThumbtack);
+            if (!thumbtackToAttach.GetComponent<Thumbtack>().ConnectedThumbtacks.Contains(_previousThumbtack) && thumbtackToAttach.GetComponent<Thumbtack>().ConnectedThumbtacks.Count > 0)
+            {
+                _yarnLine.positionCount++;
+
+                _connectedThumbtacks.Add(thumbtackToAttach);
+
+                thumbtackToAttach.GetComponent<Thumbtack>().ConnectedThumbtacks.Add(_previousThumbtack);
+
+                _previousThumbtack.GetComponent<Thumbtack>().ConnectedThumbtacks.Add(thumbtackToAttach);
+
+                _previousThumbtack = thumbtackToAttach;
+            }
         }
         else
         {
-            AttachThumbtack(newThumbtack);
+            _yarnLine.positionCount++;
+
+            _connectedThumbtacks.Add(thumbtackToAttach);
+
+            _previousThumbtack = thumbtackToAttach;
         }
     }
 
-    void AttachThumbtack(Transform thumbtackToAttach)
-    {
-        _yarnLine.positionCount++;
-
-        _connectedThumbtacks.Add(thumbtackToAttach);
-    }
-
-    void DetachThumbtack(Transform thumbtackToDetach)
+    // Might need a rework // // Might need a rework // // Might need a rework // // Might need a rework //
+    public void DetachThumbtack(Transform thumbtackToDetach)
     {
         _yarnLine.positionCount--;
 
         _connectedThumbtacks.Remove(thumbtackToDetach);
+
+        if (_yarnLine.positionCount == 0)
+        {
+            Destroy(gameObject);
+        }
     }
+    // Might need a rework // // Might need a rework // // Might need a rework // // Might need a rework //
 }

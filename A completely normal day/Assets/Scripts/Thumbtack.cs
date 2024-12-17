@@ -7,6 +7,10 @@ public class Thumbtack : MonoBehaviour
 {
     [SerializeField] XrThumbtackInteractable _xrThumbtackInteractable;
 
+    [SerializeField] List<Transform> _connectedThumbtacks = new();
+    public List<Transform> ConnectedThumbtacks
+    { get { return _connectedThumbtacks; } set { _connectedThumbtacks = value; } }
+
     [SerializeField] YarnLine _yarnLine;
     public YarnLine YarnLine
     { get { return _yarnLine; } }
