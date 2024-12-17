@@ -2413,6 +2413,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ladder
       objectReference: {fileID: 0}
+    - target: {fileID: 8625973313495950724, guid: 30c53aa228c873b4fa15ded3c3bacc4a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 8778286983436911921, guid: 30c53aa228c873b4fa15ded3c3bacc4a,
         type: 3}
       propertyPath: m_TagString
@@ -3714,7 +3719,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 49.57575, y: 1, z: 1.8413644}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
