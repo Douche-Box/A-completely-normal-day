@@ -2423,6 +2423,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ladder
       objectReference: {fileID: 0}
+    - target: {fileID: 9141923404173025386, guid: 30c53aa228c873b4fa15ded3c3bacc4a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ladder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 204004215710487184, guid: 30c53aa228c873b4fa15ded3c3bacc4a, type: 3}
@@ -2440,7 +2445,11 @@ PrefabInstance:
         type: 3}
       insertIndex: 13
       addedObject: {fileID: 1438116845}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9141923404173025386, guid: 30c53aa228c873b4fa15ded3c3bacc4a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1429968505}
   m_SourcePrefab: {fileID: 100100000, guid: 30c53aa228c873b4fa15ded3c3bacc4a, type: 3}
 --- !u!4 &1429968503 stripped
 Transform:
@@ -2448,6 +2457,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1429968502}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1429968504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9141923404173025386, guid: 30c53aa228c873b4fa15ded3c3bacc4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1429968502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1429968505
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429968504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.20505662, y: 0.21743023, z: 0.03361129}
+  m_Center: {x: -0.0010096729, y: -0.1268428, z: 0.36522335}
 --- !u!1001 &1438116844
 PrefabInstance:
   m_ObjectHideFlags: 0
