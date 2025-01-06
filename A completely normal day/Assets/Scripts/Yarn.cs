@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Yarn : MonoBehaviour
 {
-    [SerializeField] Transform _currentThumbtack;
-    [SerializeField] GameObject _currentYarnLine;
-
     [SerializeField] InputActionProperty _drawLineValue;
     [SerializeField] InputActionProperty _removeLineValue;
 
@@ -17,21 +14,20 @@ public class Yarn : MonoBehaviour
     [SerializeField] float _removeLine;
     [SerializeField] bool _isRemovingLine;
 
-    [SerializeField] AudioSource _audioSource;
-
-    [SerializeField] AudioClip _connectYarnClip;
-    [SerializeField] AudioClip _disconnectYarnClip;
-
-    [SerializeField] Transform _bulletinBoard;
-
-    [SerializeField] GameObject _yarnLinePrefab;
-
     [SerializeField] GameObject _leftHand;
     public GameObject LeftHand
     { get { return _leftHand; } set { _leftHand = value; } }
     [SerializeField] GameObject _rightHand;
     public GameObject RightHand
     { get { return _rightHand; } set { _rightHand = value; } }
+
+    [SerializeField] Transform _currentThumbtack;
+    [SerializeField] YarnLine _currentYarnLine;
+    [SerializeField] GameObject _yarnLinePrefab;
+    [SerializeField] Transform _bulletinBoard;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _connectYarnClip;
+    [SerializeField] AudioClip _disconnectYarnClip;
 
     private void OnEnable()
     {
@@ -59,9 +55,13 @@ public class Yarn : MonoBehaviour
     {
         if (_rightHand != null)
         {
-            _drawLine = context.ReadValue<float>();
+            _isDrawingLine = context.started || context.performed;
 
-            _isDrawingLine = _drawLine == 1f;
+            if (context.canceled && _currentYarnLine != null)
+            {
+                _currentYarnLine.StopDrawing();
+                _currentYarnLine = null;
+            }
         }
     }
 
@@ -80,6 +80,10 @@ public class Yarn : MonoBehaviour
         if (_isDrawingLine)
         {
             ConnectYarn();
+            if (_currentYarnLine != null)
+            {
+                _currentYarnLine.UpdatePreviewPosition(transform.position);
+            }
         }
         else if (_isRemovingLine)
         {
@@ -97,83 +101,64 @@ public class Yarn : MonoBehaviour
 
     private void ConnectYarn()
     {
-        if (_currentThumbtack != null)
+        if (_currentThumbtack == null) return;
+
+        var thumbtack = _currentThumbtack.GetComponentInChildren<Thumbtack>();
+        if (thumbtack == null) return;
+
+        // Start new connection
+        if (_currentYarnLine == null)
         {
-            if (_currentThumbtack.GetComponentInChildren<Thumbtack>().YarnLine == null)
+            var newLine = Instantiate(_yarnLinePrefab, _bulletinBoard).GetComponent<YarnLine>();
+            if (newLine.TryStartConnection(_currentThumbtack))
             {
-                if (_audioSource != null && _connectYarnClip != null)
-                {
-                    _audioSource.clip = _connectYarnClip;
-                    _audioSource.Play();
-                }
-
-                if (_currentYarnLine == null)
-                {
-                    GameObject newYarnLine = Instantiate(_yarnLinePrefab, _bulletinBoard);
-
-                    newYarnLine.GetComponent<YarnLine>().AttachThumbtack(_currentThumbtack);
-
-                    _currentYarnLine = newYarnLine;
-                }
-                else
-                {
-                    _currentYarnLine.GetComponent<YarnLine>().AttachThumbtack(_currentThumbtack);
-                }
-
-                _currentThumbtack = null;
-
+                _currentYarnLine = newLine;
+                PlayConnectSound();
             }
             else
             {
-                _currentYarnLine = _currentThumbtack.GetComponentInChildren<Thumbtack>().YarnLine.gameObject;
-
-                _currentYarnLine.GetComponent<YarnLine>().AttachThumbtack(_currentThumbtack);
-
-                _currentThumbtack = null;
+                Destroy(newLine.gameObject);
             }
         }
+        // Add to existing connection
+        else if (_currentYarnLine.TryCompleteConnection(_currentThumbtack))
+        {
+            PlayConnectSound();
+        }
+
+        _currentThumbtack = null;
     }
 
-    // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS //
-    // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS //
     private void DisconnectYarn()
     {
-        if (_currentThumbtack != null)
+        if (_currentThumbtack == null) return;
+
+        var thumbtack = _currentThumbtack.GetComponent<Thumbtack>();
+        if (thumbtack?.YarnLine != null)
         {
-            if (_currentThumbtack.GetComponentInChildren<Thumbtack>().YarnLine == null)
-            {
-                if (_audioSource != null && _connectYarnClip != null)
-                {
-                    _audioSource.clip = _disconnectYarnClip;
-                    _audioSource.Play();
-                }
+            thumbtack.YarnLine.DetachThumbtack(_currentThumbtack);
+            PlayDisconnectSound();
+        }
 
-                if (_currentYarnLine == null)
-                {
-                    GameObject newYarnLine = Instantiate(_yarnLinePrefab, _bulletinBoard);
+        _currentThumbtack = null;
+    }
 
-                    newYarnLine.GetComponent<YarnLine>().DetachThumbtack(_currentThumbtack);
-
-                    _currentYarnLine = newYarnLine;
-                }
-                else
-                {
-                    _currentYarnLine.GetComponent<YarnLine>().DetachThumbtack(_currentThumbtack);
-                }
-
-                _currentThumbtack = null;
-
-            }
-            else
-            {
-                _currentYarnLine = _currentThumbtack.GetComponentInChildren<Thumbtack>().YarnLine.gameObject;
-
-                _currentYarnLine.GetComponent<YarnLine>().DetachThumbtack(_currentThumbtack);
-
-                _currentThumbtack = null;
-            }
+    private void PlayConnectSound()
+    {
+        if (_audioSource && _connectYarnClip)
+        {
+            _audioSource.clip = _connectYarnClip;
+            _audioSource.Play();
         }
     }
-    // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS //
-    // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS // // FIX LOGIC FOR THIS //
+
+    private void PlayDisconnectSound()
+    {
+        if (_audioSource && _disconnectYarnClip)
+        {
+            _audioSource.clip = _disconnectYarnClip;
+            _audioSource.Play();
+        }
+    }
 }
+

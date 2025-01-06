@@ -1,61 +1,163 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class YarnLine : MonoBehaviour
 {
     [SerializeField] LineRenderer _yarnLine;
+    [SerializeField] List<Transform> _connectedPoints = new();
+    [SerializeField] List<Polaroid> _attachedPolaroids = new();
 
-    [SerializeField] List<Transform> _connectedThumbtacks = new();
-
-    [SerializeField] Transform _previousThumbtack;
+    private Transform _startThumbtack;
+    private bool _isDrawing;
+    public List<Polaroid> AttachedPolaroids => _attachedPolaroids;
 
     private void Update()
     {
-        for (int i = 0; i < _connectedThumbtacks.Count; i++)
-        {
-            _yarnLine.SetPosition(i, _connectedThumbtacks[i].position);
-        }
+        UpdateLinePositions();
     }
 
-    public void AttachThumbtack(Transform thumbtackToAttach)
+    public bool TryStartConnection(Transform thumbtack)
     {
-        if (_previousThumbtack != null)
+        if (!_isDrawing)
         {
-            if (!thumbtackToAttach.GetComponent<Thumbtack>().ConnectedThumbtacks.Contains(_previousThumbtack) && thumbtackToAttach.GetComponent<Thumbtack>().ConnectedThumbtacks.Count > 0)
+            _connectedPoints.Clear();
+            _attachedPolaroids.Clear();
+            _isDrawing = true;
+        }
+
+        if (_startThumbtack == null)
+        {
+            _startThumbtack = thumbtack;
+            if (!_connectedPoints.Contains(thumbtack))
             {
-                _yarnLine.positionCount++;
-
-                _connectedThumbtacks.Add(thumbtackToAttach);
-
-                thumbtackToAttach.GetComponent<Thumbtack>().ConnectedThumbtacks.Add(_previousThumbtack);
-
-                _previousThumbtack.GetComponent<Thumbtack>().ConnectedThumbtacks.Add(thumbtackToAttach);
-
-                _previousThumbtack = thumbtackToAttach;
+                _connectedPoints.Add(thumbtack);
+                UpdatePolaroids(thumbtack);
             }
+            _yarnLine.positionCount = _connectedPoints.Count + 1;
+            UpdateLinePositions();
+            return true;
         }
-        else
-        {
-            _yarnLine.positionCount++;
-
-            _connectedThumbtacks.Add(thumbtackToAttach);
-
-            _previousThumbtack = thumbtackToAttach;
-        }
+        return false;
     }
 
-    // Might need a rework // // Might need a rework // // Might need a rework // // Might need a rework //
-    public void DetachThumbtack(Transform thumbtackToDetach)
+    public bool TryCompleteConnection(Transform endThumbtack)
     {
-        _yarnLine.positionCount--;
+        if (_startThumbtack == null || !CanConnect(_startThumbtack, endThumbtack))
+        {
+            return false;
+        }
 
-        _connectedThumbtacks.Remove(thumbtackToDetach);
+        AddPoint(endThumbtack);
+        _startThumbtack = endThumbtack;
+        return true;
+    }
 
-        if (_yarnLine.positionCount == 0)
+    public void StopDrawing()
+    {
+        _isDrawing = false;
+        _startThumbtack = null;
+        if (_connectedPoints.Count < 2)
         {
             Destroy(gameObject);
         }
     }
-    // Might need a rework // // Might need a rework // // Might need a rework // // Might need a rework //
+
+    public void UpdatePreviewPosition(Vector3 position)
+    {
+        if (_startThumbtack != null)
+        {
+            _yarnLine.SetPosition(_yarnLine.positionCount - 1, position);
+        }
+    }
+
+    private bool CanConnect(Transform from, Transform to)
+    {
+        if (from == to) return false;
+
+        // Check all existing segments
+        for (int i = 0; i < _connectedPoints.Count - 1; i++)
+        {
+            if (IsSegmentDuplicate(_connectedPoints[i], _connectedPoints[i + 1], from, to))
+            {
+                return false;
+            }
+        }
+
+        // Check last segment if connecting back to start
+        if (_connectedPoints.Count > 1)
+        {
+            if (IsSegmentDuplicate(_connectedPoints[0], _connectedPoints[_connectedPoints.Count - 1], from, to))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private bool IsSegmentDuplicate(Transform seg1Start, Transform seg1End, Transform seg2Start, Transform seg2End)
+    {
+        return (seg1Start == seg2Start && seg1End == seg2End) || (seg1Start == seg2End && seg1End == seg2Start);
+    }
+
+    private void AddPoint(Transform point)
+    {
+        _connectedPoints.Add(point);
+        UpdatePolaroids(point);
+        _yarnLine.positionCount = _connectedPoints.Count;
+        UpdateLinePositions();
+    }
+
+    private void UpdateLinePositions()
+    {
+        for (int i = 0; i < _connectedPoints.Count; i++)
+        {
+            _yarnLine.SetPosition(i, _connectedPoints[i].position);
+        }
+
+        if (_startThumbtack != null)
+        {
+            _yarnLine.SetPosition(_yarnLine.positionCount - 1, _startThumbtack.position);
+        }
+    }
+
+    public void DetachThumbtack(Transform thumbtack)
+    {
+        _connectedPoints.Remove(thumbtack);
+        UpdateAttachedPolaroids();
+
+        if (_connectedPoints.Count < 2)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _yarnLine.positionCount = _connectedPoints.Count;
+            UpdateLinePositions();
+        }
+    }
+
+    private void UpdatePolaroids(Transform thumbtack)
+    {
+        var polaroid = thumbtack.GetComponent<Thumbtack>()?.AttachedPolaroid;
+        if (polaroid != null && !_attachedPolaroids.Contains(polaroid))
+        {
+            _attachedPolaroids.Add(polaroid);
+        }
+    }
+
+    private void UpdateAttachedPolaroids()
+    {
+        _attachedPolaroids.Clear();
+        foreach (var point in _connectedPoints)
+        {
+            UpdatePolaroids(point);
+        }
+    }
+
+    private void CancelConnection()
+    {
+        _startThumbtack = null;
+        UpdateLinePositions();
+    }
 }

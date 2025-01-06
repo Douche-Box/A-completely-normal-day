@@ -38,6 +38,7 @@ public class Polaroid : MonoBehaviour
     [SerializeField] float _fadeTime;
 
     [SerializeField] List<ClueInfo> _clueInfos = new();
+    public List<ClueInfo> ClueInfos => _clueInfos;
 
     [SerializeField] AudioSource _audioSource;
 
@@ -79,11 +80,10 @@ public class Polaroid : MonoBehaviour
                     _clueInfos.Add(newClueData);
                 }
             }
-            CheckForPhotoClueQuality();
         }
         else
         {
-            Debug.LogError("Clues or cluePointsVisible list is null or mismatched in length.");
+            Debug.Log("Clues or cluePointsVisible list is null or mismatched in length.");
 
             for (int i = 0; i < clues.Count; i++)
             {
@@ -91,31 +91,6 @@ public class Polaroid : MonoBehaviour
             }
             Debug.Log($"{clues} and {cluePointsVisible}");
         }
-    }
-
-    void CheckForPhotoClueQuality()
-    {
-        for (int i = 0; i < _clueInfos.Count; i++)
-        {
-            _clueInfos[i].cluePercentage = GetPercentage(_clueInfos[i].clueData.cluePointsNeeded, _clueInfos[i].cluePoints);
-
-            if (_clueInfos[i].cluePercentage >= 100)
-            {
-                _clueInfos[i].validClue = true;
-            }
-        }
-    }
-
-    float GetPercentage(float maxValue, float value)
-    {
-        Debug.Log($"{maxValue} {value}");
-        if (maxValue == 0)
-        {
-            Debug.Log("Max value cannot be 0");
-            return 0.0f;
-        }
-        Debug.Log($"{value / maxValue * 100}%");
-        return value / maxValue * 100;
     }
 
     private IEnumerator FadeFromBlackToWhite()

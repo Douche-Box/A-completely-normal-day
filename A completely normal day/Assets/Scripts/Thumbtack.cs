@@ -15,6 +15,9 @@ public class Thumbtack : MonoBehaviour
     public YarnLine YarnLine
     { get { return _yarnLine; } }
 
+    [SerializeField] Polaroid _attachedPolaroid;
+    public Polaroid AttachedPolaroid => _attachedPolaroid;
+
     private void Awake()
     {
         _xrThumbtackInteractable = GetComponentInParent<XrThumbtackInteractable>();
@@ -30,6 +33,7 @@ public class Thumbtack : MonoBehaviour
         {
             other.GetComponent<XrPolaroidInteractable>().enabled = false;
             other.GetComponent<Rigidbody>().isKinematic = true;
+            _attachedPolaroid = other.GetComponent<Polaroid>();
             other.transform.SetParent(GetComponentInParent<Transform>(), true);
 
         }
