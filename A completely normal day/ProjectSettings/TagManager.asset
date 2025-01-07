@@ -11,6 +11,7 @@ TagManager:
   - Yarn
   - Climbable
   - Ladder
+  - PolaroidCamera
   layers:
   - Default
   - TransparentFX

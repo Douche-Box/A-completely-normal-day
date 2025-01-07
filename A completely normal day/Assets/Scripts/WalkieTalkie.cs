@@ -23,6 +23,10 @@ public class WalkieTalkie : MonoBehaviour
 
     [SerializeField] bool _hasWon;
 
+    [SerializeField] GameObject _winObject;
+
+    [SerializeField] GameObject _loseObject;
+
     private void OnEnable()
     {
         _talkValueRightHand.action.started += OnTalkRight;
@@ -73,7 +77,22 @@ public class WalkieTalkie : MonoBehaviour
             {
                 _canWin = false;
                 _hasWon = true;
+
                 Debug.Log("You win!");
+
+                if (_winObject != null)
+                {
+                    _winObject.SetActive(true);
+                }
+            }
+            else
+            {
+                Debug.Log("You lose");
+
+                if (_loseObject != null)
+                {
+                    _loseObject.SetActive(true);
+                }
             }
         }
     }
