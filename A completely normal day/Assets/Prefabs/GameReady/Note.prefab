@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -8434512917089779862, guid: 0718f00de27a7468684d631d1bb60f3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,104 +99,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'According to all known laws
-
-    of aviation,
-
-    there is no way a bee
-
-    should
-    be able to fly.
-
-    Its wings are too small to get
-
-    its fat little body
-    off the ground.
-
-    The bee, of course, flies anyway
-
-    because bees don''t
-    care
-
-    what humans think is impossible.
-
-    Yellow, black. Yellow, black.
-
-    Yellow,
-    black. Yellow, black.
-
-    Ooh, black and yellow!
-
-    Let''s shake it up a little.
-
-    Barry!
-    Breakfast is ready!
-
-    Ooming!
-
-    Hang on a second.
-
-    Hello?
-
-    - Barry?
-
-    -
-    Adam?
-
-    - Oan you believe this is happening?
-
-    - I can''t. I''ll pick you
-    up.
-
-    Looking sharp.
-
-    Use the stairs. Your father
-
-    paid good money
-    for those.
-
-    Sorry. I''m excited.
-
-    Here''s the graduate.
-
-    We''re very
-    proud of you, son.
-
-    A perfect report card, all B''s.
-
-    Very proud.
-
-    Ma!
-    I got a thing going here.
-
-    - You got lint on your fuzz.
-
-    - Ow! That''s
-    me!
-
-    - Wave to us! We''ll be in row 118,000.
-
-    - Bye!
-
-    Barry, I told
-    you,
-
-    stop flying in the house!
-
-    - Hey, Adam.
-
-    - Hey, Barry.
-
-    -
-    Is that fuzz gel?
-
-    - A little. Special day, graduati-
-
-
-'
+  m_text: "March Twentyfourth:\r\n\r\nDear diary, today I didn\u2019t do much. I\u2019ve
+    been stuck in this house since I was born, but tonight that all changes. The
+    adults say it\u2019s better this way to keep me safe and I know I might get denounced,
+    but even that\u2019s better than being stuck here.\r\n\r\nScrew Falde, screw
+    the commune, I\u2019m Sixteen goddammit! I\u2019m sneaking out tonight when everyone
+    is asleep. Tonight, my life will finally begin.\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0718f00de27a7468684d631d1bb60f3f, type: 2}
+  m_sharedMaterial: {fileID: -8434512917089779862, guid: 0718f00de27a7468684d631d1bb60f3f,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -220,7 +132,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.1
+  m_fontSize: 0.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -276,17 +188,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4bad1fc9ea6a73040ab5b54a971e7d73,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 74.42298
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4bad1fc9ea6a73040ab5b54a971e7d73,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.566
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4bad1fc9ea6a73040ab5b54a971e7d73,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.713905
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4bad1fc9ea6a73040ab5b54a971e7d73,
         type: 3}
