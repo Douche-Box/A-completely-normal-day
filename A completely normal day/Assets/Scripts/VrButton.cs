@@ -16,12 +16,12 @@ public class VrButton : MonoBehaviour
 
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip[] btnsounds;
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (!isPressed)
         {
-            button.transform.localPosition = new Vector3(0, minHight, 0);
+            button.transform.up = new Vector3(0, minHight, 0);
             presser = other.gameObject;
             onPress.Invoke();
             isPressed = true;
@@ -33,7 +33,7 @@ public class VrButton : MonoBehaviour
         if (other.gameObject == presser.gameObject)
         {
             BTNSound();
-            button.transform.localPosition = new Vector3(0, buttonHight, 0);
+            button.transform.up = new Vector3(0, buttonHight, 0);
             onRelease.Invoke();
             isPressed = false;
         }
@@ -43,6 +43,6 @@ public class VrButton : MonoBehaviour
     {
         source.pitch = Random.Range(0.5f, 1.5f);
         source.PlayOneShot(btnsounds[Random.Range(0, btnsounds.Length)]);
-        
+
     }
 }

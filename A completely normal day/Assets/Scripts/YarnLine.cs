@@ -11,6 +11,13 @@ public class YarnLine : MonoBehaviour
     private bool _isDrawing;
     public List<Polaroid> AttachedPolaroids => _attachedPolaroids;
 
+    [SerializeField] BulletinBoard _bulletinBoard;
+
+    private void Awake()
+    {
+        _bulletinBoard = FindObjectOfType<BulletinBoard>();
+    }
+
     private void Update()
     {
         UpdateLinePositions();
@@ -56,10 +63,13 @@ public class YarnLine : MonoBehaviour
     {
         _isDrawing = false;
         _startThumbtack = null;
+
         if (_connectedPoints.Count < 2)
         {
             Destroy(gameObject);
         }
+
+        _bulletinBoard.YarnLines.Add(this);
     }
 
     public void UpdatePreviewPosition(Vector3 position)
