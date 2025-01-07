@@ -260,6 +260,74 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1001 &981493525
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.310022
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.6827235
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346053825250432311, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383246904552508750, guid: 6ad92c4b6540cf147acccc217bd7b405,
+        type: 3}
+      propertyPath: m_Name
+      value: Prullenbak Zonder Deksel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ad92c4b6540cf147acccc217bd7b405, type: 3}
 --- !u!1 &2088340774
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1466,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 838241e4e87849a498a4ad642cd70c66, type: 3}
+--- !u!1001 &3352992305186870983
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.693891
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.6306567
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379822251531540049, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265229216737316392, guid: e9992456d2631ed48bc56bedc49e39a9,
+        type: 3}
+      propertyPath: m_Name
+      value: Prullenbak
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e9992456d2631ed48bc56bedc49e39a9, type: 3}
 --- !u!1001 &3761289487168351154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3420,3 +3556,5 @@ SceneRoots:
   - {fileID: 6653529944835334733}
   - {fileID: 1478772545407130992}
   - {fileID: 3114969084856365015}
+  - {fileID: 3352992305186870983}
+  - {fileID: 981493525}
