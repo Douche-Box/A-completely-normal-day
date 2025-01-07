@@ -69,7 +69,7 @@ public class YarnLine : MonoBehaviour
             Destroy(gameObject);
         }
 
-        _bulletinBoard.YarnLines.Add(this);
+        _bulletinBoard.AddYarnLines(this);
     }
 
     public void UpdatePreviewPosition(Vector3 position)
@@ -138,18 +138,22 @@ public class YarnLine : MonoBehaviour
 
         if (_connectedPoints.Count < 2)
         {
+            _bulletinBoard.RemoveYarnLine(this);
             Destroy(gameObject);
+            return;
         }
         else
         {
             _yarnLine.positionCount = _connectedPoints.Count;
             UpdateLinePositions();
         }
+
+        _bulletinBoard.UpdateYarnLines();
     }
 
     private void UpdatePolaroids(Transform thumbtack)
     {
-        var polaroid = thumbtack.GetComponent<Thumbtack>()?.AttachedPolaroid;
+        var polaroid = thumbtack.GetComponentInChildren<Thumbtack>()?.AttachedPolaroid;
         if (polaroid != null && !_attachedPolaroids.Contains(polaroid))
         {
             _attachedPolaroids.Add(polaroid);

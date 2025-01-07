@@ -33,6 +33,7 @@ public class Thumbtack : MonoBehaviour
         {
             other.GetComponent<XrPolaroidInteractable>().enabled = false;
             other.GetComponent<Rigidbody>().isKinematic = true;
+            other.GetComponent<Collider>().enabled = false;
             _attachedPolaroid = other.GetComponent<Polaroid>();
             other.transform.SetParent(GetComponentInParent<Transform>(), true);
 

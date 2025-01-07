@@ -5,46 +5,89 @@ using UnityEngine;
 public class BulletinBoard : MonoBehaviour
 {
     [SerializeField] List<YarnLine> _yarnLines = new();
-    public List<YarnLine> YarnLines
-    { get { return _yarnLines; } set { _yarnLines = value; UpdateYarnLines(); } }
 
     [SerializeField] List<ClueInfo> _cluesOnBoard = new();
 
-    [SerializeField] ClueData[] _cluesNeeded;
+    [SerializeField] ClueInfo[] _cluesNeeded;
 
-    private void UpdateYarnLines()
+    [SerializeField] WalkieTalkie _walkieTalkie;
+
+    public void AddYarnLines(YarnLine yarnLine)
+    {
+        _yarnLines.Add(yarnLine);
+        UpdateYarnLines();
+    }
+
+    public void RemoveYarnLine(YarnLine yarnLine)
+    {
+        _yarnLines.Remove(yarnLine);
+        UpdateYarnLines();
+    }
+
+    private void Awake()
+    {
+        _walkieTalkie = FindAnyObjectByType<WalkieTalkie>();
+    }
+
+    public void UpdateYarnLines()
     {
         _cluesOnBoard.Clear();
 
         foreach (YarnLine yarnLine in _yarnLines)
         {
+            Debug.Log("Step 1");
             foreach (Polaroid polaroids in yarnLine.AttachedPolaroids)
             {
-
-                foreach (ClueInfo clueInfos in polaroids.ClueInfos)
+                Debug.Log("Step 2");
+                foreach (ClueInfo clueInfo in polaroids.ClueInfos)
                 {
-                    _cluesOnBoard.Add(clueInfos);
+                    Debug.Log("Step 3");
 
-                    CheckForPhotoClueQuality(clueInfos);
+                    _cluesOnBoard.Add(clueInfo);
+
+                    CheckForPhotoClueQuality();
                 }
             }
         }
     }
 
-    void CheckForPhotoClueQuality(ClueInfo clueInfo)
+    void CheckForPhotoClueQuality()
     {
-        clueInfo.cluePercentage = GetPercentage(clueInfo.clueData.cluePointsNeeded, clueInfo.cluePoints);
-
-        if (clueInfo.cluePercentage >= 100)
+        // Reset all clue validations first
+        foreach (var clue in _cluesNeeded)
         {
-            clueInfo.validClue = true;
+            clue.validClue = false;
+            clue.cluePercentage = 0;
+        }
 
-            CheckForWin();
+        // Check each photo's individual quality
+        for (int i = 0; i < _cluesOnBoard.Count; i++)
+        {
+            var currentClue = _cluesOnBoard[i];
+            currentClue.cluePercentage = GetPercentage(currentClue.clueData.cluePointsNeeded, currentClue.cluePoints);
+
+            // If this photo is good enough, mark its clue type as valid
+            for (int y = 0; y < _cluesNeeded.Length; y++)
+            {
+                if (currentClue.clueData == _cluesNeeded[y].clueData)
+                {
+                    _cluesNeeded[y].cluePercentage += currentClue.cluePercentage;
+                    break;
+                }
+
+                if (_cluesNeeded[y].cluePercentage >= 100)
+                {
+                    _cluesNeeded[y].validClue = true;
+                    CheckForWin();
+                }
+            }
         }
     }
 
     void CheckForWin()
     {
+        _walkieTalkie.CanWin = false;
+
         // Early exit if we don't have enough clues
         if (_cluesOnBoard.Count < _cluesNeeded.Length)
         {
@@ -52,30 +95,21 @@ public class BulletinBoard : MonoBehaviour
         }
 
         // Filter to only valid clues first
-        var validClues = _cluesOnBoard.Where(c => c.validClue).ToList();
+        var validClues = _cluesNeeded.Where(c => c.validClue).ToList();
         if (validClues.Count < _cluesNeeded.Length)
         {
             return;
         }
 
-        // Track found clues
-        int matchedClues = 0;
-
-        // Check each required clue
-        foreach (var requiredClue in _cluesNeeded)
+        for (int i = 0; i < _cluesNeeded.Length; i++)
         {
-            if (validClues.Any(c => c.clueData == requiredClue))
+            if (!_cluesNeeded[i].validClue)
             {
-                matchedClues++;
+                return;
             }
         }
 
-        // Win condition
-        if (matchedClues == _cluesNeeded.Length)
-        {
-            Debug.Log("You win!");
-            // TODO: Trigger win state
-        }
+        _walkieTalkie.CanWin = true;
     }
 
     float GetPercentage(float maxValue, float value)

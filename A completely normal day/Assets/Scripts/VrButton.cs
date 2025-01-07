@@ -21,7 +21,7 @@ public class VrButton : MonoBehaviour
     {
         if (!isPressed)
         {
-            button.transform.up = new Vector3(0, minHight, 0);
+            button.transform.forward = new Vector3(0, minHight, 0);
             presser = other.gameObject;
             onPress.Invoke();
             isPressed = true;
@@ -33,7 +33,7 @@ public class VrButton : MonoBehaviour
         if (other.gameObject == presser.gameObject)
         {
             BTNSound();
-            button.transform.up = new Vector3(0, buttonHight, 0);
+            button.transform.forward = new Vector3(0, buttonHight, 0);
             onRelease.Invoke();
             isPressed = false;
         }
@@ -41,6 +41,7 @@ public class VrButton : MonoBehaviour
 
     private void BTNSound()
     {
+        if (btnsounds.Length == 0) return;
         source.pitch = Random.Range(0.5f, 1.5f);
         source.PlayOneShot(btnsounds[Random.Range(0, btnsounds.Length)]);
 

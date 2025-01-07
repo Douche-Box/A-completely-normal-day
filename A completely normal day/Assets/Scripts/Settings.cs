@@ -54,13 +54,21 @@ public class Settings : MonoBehaviour
 
         _smoothSpeed = PlayerPrefs.GetFloat("SmoothValue");
 
-        _playerStats.UpdateSettings(snapOrSmooth, _snapAngle, _smoothSpeed);
+        if (_playerStats != null)
+        {
+            _playerStats.UpdateSettings(snapOrSmooth, _snapAngle, _smoothSpeed);
+        }
 
         #endregion
     }
 
     void InitializeVolume(string volumeParameter, float volumeLevel, Slider slider, TMP_InputField inputField)
     {
+        if (_audioMixer == null)
+        {
+            return;
+        }
+
         // Set volume based on whether volume level is zero or non-zero
         if (volumeLevel > 0)
         {
@@ -80,6 +88,14 @@ public class Settings : MonoBehaviour
         {
             inputField.text = (volumeLevel * 100).ToString("0");
         }
+    }
+
+    public void QuitBtn()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 
     #region Audio

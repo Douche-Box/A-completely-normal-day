@@ -151,6 +151,7 @@ public class PolaroidCamera : MonoBehaviour
         List<Clue> clues = new();
         List<int> clueAmounts = new();
 
+        int clueAmount = 0;
         foreach (GameObject clueObject in _objectsInView)
         {
             if (clueObject != null)
@@ -159,7 +160,6 @@ public class PolaroidCamera : MonoBehaviour
 
                 if (clue != null)
                 {
-                    int clueAmount = 0;
 
                     clues.Add(clue);
 
@@ -177,12 +177,19 @@ public class PolaroidCamera : MonoBehaviour
                             }
                         }
                     }
-
                     clueAmounts.Add(clueAmount);
                 }
             }
         }
-        newPolaroid.InitializePhoto(clues, clueAmounts);
+
+        if (clueAmount == 0)
+        {
+            return;
+        }
+        else
+        {
+            newPolaroid.InitializePhoto(clues, clueAmounts);
+        }
     }
 
 

@@ -83,7 +83,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c3a37c7644e8e9e4fa44b3a63ba1f3c3,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3272494861429761367}
+      addedObject: {fileID: 6457360422725001220}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c3a37c7644e8e9e4fa44b3a63ba1f3c3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7847273380003291330}
   m_SourcePrefab: {fileID: 100100000, guid: c3a37c7644e8e9e4fa44b3a63ba1f3c3, type: 3}
 --- !u!1 &6541829519682902143 stripped
 GameObject:
@@ -139,7 +143,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3272494861429761367
+--- !u!114 &6457360422725001220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,7 +152,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6541829519682902143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 74bb64d09565c8b40bcceb2f194585ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -157,7 +161,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 1
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -291,3 +295,45 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  _walkieTalkie: {fileID: 0}
+--- !u!114 &7847273380003291330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541829519682902143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283a3eddf6257d1418ac15cc2838f073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _talkValueRightHand:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Talk Value Right Hand
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0a904b75-f052-40d7-8227-d7666bd7712f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  _talkValueLeftHand:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Talk Value Left Hand
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 38c648c6-8a2b-4e49-9a71-7b0e1f860e3d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  _leftHand: {fileID: 0}
+  _rightHand: {fileID: 0}
+  _isTalkButtonPressed: 0
+  _canWin: 0
+  _hasWon: 0
