@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3470816998788694719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371704214222721645, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144124720312125655, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_Name
+      value: Diary_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994470264634769493, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7727194530658355395, guid: 296d73520e19340c9b23cedeff90d284,
+        type: 2}
+    - target: {fileID: 5596450890949555339, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_text
+      value: "December 4th:\r\n\r\nStitch and pull, stitch and pull, stitch and pull.
+        I\u2019ve been doing that for days, I haven\u2019t gotten a minute of sleep
+        since my husband has been denounced, the look on his face right before it
+        has been imprinted in my brain.\r\n\r\nThe only thing that stops the feeling
+        is tailoring, but I can\u2019t afford my home anymore since he left me. Falde
+        says it\u2019s a sin for women to have a job.\r\n\r\nEveryone seems strangely
+        calm and okay about it, but then again, whenever I go out, I have to pretend
+        to be happy. Maybe they are pretending too.\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5596450890949555339, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5596450890949555339, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 296d73520e19340c9b23cedeff90d284,
+        type: 2}
+    - target: {fileID: 5596450890949555339, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7727194530658355395, guid: 296d73520e19340c9b23cedeff90d284,
+        type: 2}
+    - target: {fileID: 5596450890949555339, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95dab708d7423774c8709937a9aca196, type: 3}
