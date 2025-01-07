@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2155030897200151412
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435263909743670526, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 955201365932633668, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_Name
+      value: Diary_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7730767674626282008, guid: b833fe676ef19450aa12b70a2d6052d3,
+        type: 3}
+      propertyPath: m_text
+      value: "October 8th\r:\n\r\nMark got fired yesterday, without the money, we
+        can\u2019t pay our church. That means we\u2019ll be denounced, I\u2019m really
+        scared, but I have to be brave. Tonight, I\u2019m taking my child and running
+        away through the woods.\r\n\r\nI know this means I won\u2019t go to paradise,
+        but at least me and my child won\u2019t die. I can give them a good life
+        I could never have, I grew up here and my life has been horrible. At least
+        I can give my children a better life like this.\r\n\n\n"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b833fe676ef19450aa12b70a2d6052d3, type: 3}
