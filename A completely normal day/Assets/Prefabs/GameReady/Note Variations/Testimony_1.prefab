@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Testimony_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3144124720312125655, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_TagString
+      value: Clue
+      objectReference: {fileID: 0}
     - target: {fileID: 4994470264634769493, guid: 95dab708d7423774c8709937a9aca196,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -77,11 +82,11 @@ PrefabInstance:
         I suddenly stepped into a paradise, where I could finally be freed from the
         shackles of reality.
 
-        
 
-        I spent my whole life running from
-        my past, but now at last, I made my escape. I thank our lord Falde for bringing
-        me this salvation. Praise Falde, Amen.
+
+        I spent my whole life running from my past,
+        but now at last, I made my escape. I thank our lord Falde for bringing me
+        this salvation. Praise Falde, Amen.
 
 '
       objectReference: {fileID: 0}

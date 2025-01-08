@@ -61,7 +61,12 @@ PrefabInstance:
     - target: {fileID: 3144124720312125655, guid: 95dab708d7423774c8709937a9aca196,
         type: 3}
       propertyPath: m_Name
-      value: Note Variant
+      value: Diary_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144124720312125655, guid: 95dab708d7423774c8709937a9aca196,
+        type: 3}
+      propertyPath: m_TagString
+      value: Clue
       objectReference: {fileID: 0}
     - target: {fileID: 4994470264634769493, guid: 95dab708d7423774c8709937a9aca196,
         type: 3}
