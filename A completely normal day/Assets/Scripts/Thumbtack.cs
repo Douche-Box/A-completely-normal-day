@@ -39,8 +39,9 @@ public class Thumbtack : MonoBehaviour
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.GetComponent<Collider>().enabled = false;
 
-            Vector3 offsetPosition = transform.position + (-transform.up * _polaroidConnectOffset);
-            other.transform.position = offsetPosition;
+            Vector3 newPosition = other.transform.position;
+            newPosition.y = transform.position.y + (-transform.up.y * _polaroidConnectOffset);
+            other.transform.position = newPosition;
 
             _attachedPolaroid = other.GetComponent<Polaroid>();
             other.transform.SetParent(GetComponentInParent<Transform>(), true);

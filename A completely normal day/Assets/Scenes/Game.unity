@@ -7327,6 +7327,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thumbtack (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7299348590061436892, guid: 7302679c4ec303e4b8e30c29e763a36a,
+        type: 3}
+      propertyPath: _polaroidConnectOffset
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 8800513741910901732, guid: 7302679c4ec303e4b8e30c29e763a36a,
         type: 3}
       propertyPath: m_LocalPosition.x
