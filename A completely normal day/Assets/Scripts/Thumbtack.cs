@@ -16,6 +16,8 @@ public class Thumbtack : MonoBehaviour
     public YarnLine YarnLine
     { get { return _yarnLine; } }
 
+    [SerializeField] float _polaroidConnectOffset = 0.1f;
+
     [SerializeField] Polaroid _attachedPolaroid;
     public Polaroid AttachedPolaroid => _attachedPolaroid;
 
@@ -36,6 +38,8 @@ public class Thumbtack : MonoBehaviour
             other.GetComponent<XRGeneralGrabTransformer>().enabled = false;
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.GetComponent<Collider>().enabled = false;
+
+            other.transform.position = new Vector3(other.transform.position.x, transform.position.y - _polaroidConnectOffset, other.transform.position.z);
 
             _attachedPolaroid = other.GetComponent<Polaroid>();
             other.transform.SetParent(GetComponentInParent<Transform>(), true);

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4947464039756602136}
-  - component: {fileID: 4097355218802969321}
   - component: {fileID: 2346791171934891632}
   - component: {fileID: 6670278664134539595}
   - component: {fileID: 7299348590061436892}
@@ -35,27 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8800513741910901732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4097355218802969321
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481117081585321210}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 183
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.00625, z: 0.005}
-  m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!65 &2346791171934891632
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66,17 +44,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.015, z: 0.005}
-  m_Center: {x: 0, y: -0.0115, z: 0}
+  m_Size: {x: 0.005, y: 0.0115, z: 0.005}
+  m_Center: {x: 0, y: -0.0135, z: 0}
 --- !u!54 &6670278664134539595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -119,6 +97,8 @@ MonoBehaviour:
   _xrThumbtackInteractable: {fileID: 0}
   _connectedThumbtacks: []
   _yarnLine: {fileID: 0}
+  _polaroidConnectOffset: {x: 0, y: 0, z: 0}
+  _polaroidConnectPoint: {fileID: 0}
   _attachedPolaroid: {fileID: 0}
 --- !u!1 &3603143486311384406
 GameObject:
@@ -409,6 +389,6 @@ MonoBehaviour:
   m_AddDefaultGrabTransformers: 1
   _thumbtack: {fileID: 0}
   _rigidbody: {fileID: 0}
-  _tackCollider: {fileID: 4097355218802969321}
+  _tackCollider: {fileID: 0}
   _boardToAttachTo: {fileID: 0}
   _photoToAttachTo: {fileID: 0}
