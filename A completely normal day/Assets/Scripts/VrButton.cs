@@ -5,23 +5,33 @@ using UnityEngine.Events;
 public class VrButton : MonoBehaviour
 {
 
-    [SerializeField] private GameObject button;
-    [SerializeField] private UnityEvent onPress;
-    [SerializeField] private UnityEvent onRelease;
-    private GameObject presser;
-    public float buttonHight;
-    public float minHight;
+    [SerializeField] GameObject button;
+    [SerializeField] UnityEvent onPress;
+    [SerializeField] UnityEvent onRelease;
+    GameObject presser;
 
-    [SerializeField] private bool isPressed;
+    [SerializeField] float pressedPosition = 0.02f;
+    [SerializeField] float releasedPosition = 0.04f;
+    bool isPressed;
+    Vector3 initialLocalPosition;
 
-    [SerializeField] private AudioSource source;
-    [SerializeField] private AudioClip[] btnsounds;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip[] btnsounds;
+
+    private void Start()
+    {
+        initialLocalPosition = button.transform.localPosition;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!isPressed)
         {
-            button.transform.forward = new Vector3(0, minHight, 0);
+            // Move button along its local up axis
+            Vector3 newPosition = initialLocalPosition;
+            newPosition.y = pressedPosition;
+            button.transform.localPosition = newPosition;
+
             presser = other.gameObject;
             onPress.Invoke();
             isPressed = true;
@@ -33,7 +43,11 @@ public class VrButton : MonoBehaviour
         if (other.gameObject == presser.gameObject)
         {
             BTNSound();
-            button.transform.forward = new Vector3(0, buttonHight, 0);
+            // Return to original position
+            Vector3 newPosition = initialLocalPosition;
+            newPosition.y = releasedPosition;
+            button.transform.localPosition = newPosition;
+
             onRelease.Invoke();
             isPressed = false;
         }

@@ -16,7 +16,7 @@ public class Thumbtack : MonoBehaviour
     public YarnLine YarnLine
     { get { return _yarnLine; } }
 
-    [SerializeField] float _polaroidConnectOffset = 0.1f;
+    [SerializeField] float _polaroidConnectOffset = 0.01f;
 
     [SerializeField] Polaroid _attachedPolaroid;
     public Polaroid AttachedPolaroid => _attachedPolaroid;

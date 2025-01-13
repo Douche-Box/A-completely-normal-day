@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.0115, z: 0.005}
-  m_Center: {x: 0, y: -0.0135, z: 0}
+  m_Size: {x: 0.005, y: 0.005459819, z: 0.005}
+  m_Center: {x: 0, y: -0.01047991, z: 0}
 --- !u!54 &6670278664134539595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,8 +97,7 @@ MonoBehaviour:
   _xrThumbtackInteractable: {fileID: 0}
   _connectedThumbtacks: []
   _yarnLine: {fileID: 0}
-  _polaroidConnectOffset: {x: 0, y: 0, z: 0}
-  _polaroidConnectPoint: {fileID: 0}
+  _polaroidConnectOffset: 0.0225
   _attachedPolaroid: {fileID: 0}
 --- !u!1 &3603143486311384406
 GameObject:
@@ -206,8 +205,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0141352145, y: 0.012958728, z: 0.016321938}
-  m_Center: {x: 0, y: -0.0011309175, z: 0}
+  m_Size: {x: 0.014042139, y: 0.015016042, z: 0.016214464}
+  m_Center: {x: 0, y: -0.0015371032, z: 0}
 --- !u!54 &666774789480067513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -345,7 +344,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
