@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0033241666, y: 0.004434902, z: 0.003838417}
-  m_Center: {x: 0, y: -0.009566864, z: 0}
+  m_Size: {x: 0.005, y: 0.00625, z: 0.005}
+  m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!54 &6670278664134539595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -95,7 +95,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _xrThumbtackInteractable: {fileID: 0}
+  _connectedThumbtacks: []
   _yarnLine: {fileID: 0}
+  _attachedPolaroid: {fileID: 0}
 --- !u!1 &3603143486311384406
 GameObject:
   m_ObjectHideFlags: 0

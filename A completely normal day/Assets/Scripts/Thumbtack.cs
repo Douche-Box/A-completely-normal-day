@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Thumbtack : MonoBehaviour
@@ -32,8 +33,10 @@ public class Thumbtack : MonoBehaviour
         if (other.CompareTag("Polaroid"))
         {
             other.GetComponent<XrPolaroidInteractable>().enabled = false;
+            other.GetComponent<XRGeneralGrabTransformer>().enabled = false;
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.GetComponent<Collider>().enabled = false;
+
             _attachedPolaroid = other.GetComponent<Polaroid>();
             other.transform.SetParent(GetComponentInParent<Transform>(), true);
 
