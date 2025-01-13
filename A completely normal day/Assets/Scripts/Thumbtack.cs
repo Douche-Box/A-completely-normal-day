@@ -39,24 +39,16 @@ public class Thumbtack : MonoBehaviour
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.GetComponent<Collider>().enabled = false;
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, -transform.up, out hit))
-            {
-                Vector3 newPosition = hit.point;
-                newPosition.y = transform.position.y + (-transform.up.y * _polaroidConnectOffset);
-                other.transform.position = newPosition;
-            }
-            else
-            {
-                // Fallback if raycast fails
-                Vector3 newPosition = other.transform.position;
-                newPosition.y = transform.position.y + (-transform.up.y * _polaroidConnectOffset);
-                other.transform.position = newPosition;
-            }
-
-            _attachedPolaroid = other.GetComponent<Polaroid>();
             other.transform.SetParent(GetComponentInParent<Transform>(), true);
 
+            Vector3 newPosition = other.transform.position;
+            float worldOffset = transform.TransformDirection(Vector3.up * _polaroidConnectOffset).y;
+            newPosition.y = transform.position.y - worldOffset;
+
+            Debug.Log($"Thumbtack Y: {transform.position.y}, Offset: {worldOffset}, New Y: {newPosition.y}");
+            other.transform.position = newPosition;
+
+            _attachedPolaroid = other.GetComponent<Polaroid>();
         }
     }
 
