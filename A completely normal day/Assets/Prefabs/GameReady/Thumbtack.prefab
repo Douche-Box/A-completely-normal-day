@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.005, y: 0.005459819, z: 0.005}
-  m_Center: {x: 0, y: -0.01047991, z: 0}
+  m_Size: {x: 0.005, y: 0.0038922608, z: 0.005}
+  m_Center: {x: 0, y: -0.009696135, z: 0}
 --- !u!54 &6670278664134539595
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   _xrThumbtackInteractable: {fileID: 0}
   _connectedThumbtacks: []
   _yarnLine: {fileID: 0}
-  _polaroidConnectOffset: 0.0225
+  _polaroidConnectOffset: 0.025
   _attachedPolaroid: {fileID: 0}
 --- !u!1 &3603143486311384406
 GameObject:
@@ -130,8 +130,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.05, z: 1.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4947464039756602136}
   m_Father: {fileID: 0}

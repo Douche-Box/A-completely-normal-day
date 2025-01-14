@@ -31,6 +31,8 @@ public class ExpandedMovementProvider : MonoBehaviour
     [SerializeField] private bool _rightActive = false;
     [SerializeField] private bool _leftActive = false;
 
+    public bool teleport;
+
     #endregion
     [Header("Interactors")]
     #region
@@ -114,6 +116,13 @@ public class ExpandedMovementProvider : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (teleport)
+        {
+            teleport = false;
+            extrainteractorLeft.canClimb = false;
+            extrainteractorRight.canClimb = false;
+        }
+
         if (_rightActive || _leftActive)
         {
             ToggleMovement(false);

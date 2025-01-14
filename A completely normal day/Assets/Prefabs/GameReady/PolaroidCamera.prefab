@@ -399,6 +399,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+  _cameraClip: {fileID: 0}
   _leftCameraHand: {fileID: 3621556195752356812}
   _rightCameraHand: {fileID: 8434885386447440852}
   _polaroidCamera: {fileID: 0}
@@ -421,6 +422,9 @@ MonoBehaviour:
   _photoSpawnPoint: {fileID: 4307545310700872246}
   photoWidth: 512
   photoHeight: 512
+  _clueLayerMask:
+    serializedVersion: 2
+    m_Bits: 247
   _leftHand: {fileID: 0}
   _rightHand: {fileID: 0}
   _audioSource: {fileID: 0}
@@ -548,7 +552,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8600000, guid: 2eed5d287a48f1544a84e02510c1de54, type: 2}
   m_TargetDisplay: 0

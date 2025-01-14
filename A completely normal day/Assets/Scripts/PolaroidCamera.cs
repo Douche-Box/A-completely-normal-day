@@ -12,6 +12,8 @@ public class PolaroidCamera : MonoBehaviour
     [SerializeField] int photoWidth = 512;
     [SerializeField] int photoHeight = 512;
 
+    [SerializeField] LayerMask _clueLayerMask;
+
     [SerializeField] GameObject _leftHand;
     public GameObject LeftHand
     { get { return _leftHand; } set { _leftHand = value; OnLeftHandChanged?.Invoke(value); } }
@@ -169,7 +171,7 @@ public class PolaroidCamera : MonoBehaviour
                         Vector3 directionToCamera = (_polaroidCamera.transform.position - cluePointPosition).normalized;
 
                         Ray ray = new Ray(cluePointPosition, directionToCamera);
-                        if (Physics.Raycast(ray, out RaycastHit hit))
+                        if (Physics.Raycast(ray, out RaycastHit hit, _clueLayerMask))
                         {
                             if (hit.collider != null && hit.collider.gameObject == gameObject)
                             {

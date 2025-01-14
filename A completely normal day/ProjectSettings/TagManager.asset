@@ -12,16 +12,17 @@ TagManager:
   - Climbable
   - Ladder
   - PolaroidCamera
+  - Teleport
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Polaroid
   - PolaroidCamera
-  - 
+  - Clue
   - 
   - 
   - 

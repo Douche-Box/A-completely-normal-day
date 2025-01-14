@@ -10,22 +10,22 @@ public class BoxTransport : MonoBehaviour
     {
         if (other.CompareTag("Polaroid"))
         {
-            other.transform.position = _destination.position;
+            other.GetComponent<Rigidbody>().position = _destination.position;
         }
 
         if (other.CompareTag("PolaroidCamera"))
         {
-            other.transform.position = _destination.position;
+            other.GetComponent<Rigidbody>().position = _destination.position;
         }
 
         if (other.CompareTag("Thumbtack"))
         {
-            other.transform.position = _destination.position;
+            other.GetComponent<Rigidbody>().position = _destination.position;
         }
 
         if (other.CompareTag("Clue"))
         {
-            other.transform.position = _destination.position;
+            other.GetComponent<Rigidbody>().position = _destination.position;
         }
     }
 }

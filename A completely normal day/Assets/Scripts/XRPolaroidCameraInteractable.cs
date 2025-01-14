@@ -4,6 +4,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(PolaroidCamera))]
 public class XRPolaroidCameraInteractable : XRGrabInteractable
 {
+    [SerializeField] BeltCameraClip _cameraClip;
+    public BeltCameraClip CameraClip
+    { get { return _cameraClip; } set { _cameraClip = value; } }
+
     [SerializeField] GameObject _leftCameraHand;
     [SerializeField] GameObject _rightCameraHand;
 
@@ -22,6 +26,8 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);
+
+        _collider.isTrigger = false;
 
         if (args.interactorObject.transform.name == "LeftHand Controller")
         {
@@ -48,6 +54,8 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
     {
         base.OnSelectExited(args);
 
+        _collider.isTrigger = false;
+
         if (args.interactorObject.transform.name == "LeftHand Controller")
         {
             _leftCameraHand.SetActive(false);
@@ -56,7 +64,6 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
             {
                 _polaroidCamera.LeftHand = null;
             }
-
         }
         else if (args.interactorObject.transform.name == "RightHand Controller")
         {
@@ -66,6 +73,12 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
             {
                 _polaroidCamera.RightHand = null;
             }
+        }
+
+        if (_cameraClip != null)
+        {
+            _collider.isTrigger = true;
+            _cameraClip.AttachToBelt();
         }
     }
 }

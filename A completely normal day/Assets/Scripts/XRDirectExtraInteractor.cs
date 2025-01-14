@@ -15,6 +15,8 @@ public class XRDirectExtraInteractor : XRDirectInteractor
     [SerializeField] InputActionProperty _gripValue;
     [SerializeField] bool _isGripping;
 
+    [SerializeField] ExpandedMovementProvider _expandedMovementProvider;
+
     public bool canClimb;
     public bool canMove;
     public bool canTurn;
@@ -22,6 +24,8 @@ public class XRDirectExtraInteractor : XRDirectInteractor
     protected override void Awake()
     {
         base.Awake();
+
+        _expandedMovementProvider = GetComponentInParent<ExpandedMovementProvider>();
 
         canMove = true;
         canTurn = true;
@@ -67,6 +71,10 @@ public class XRDirectExtraInteractor : XRDirectInteractor
             canClimb = true;
             canMove = false;
             canTurn = false;
+        }
+        else if (args.interactableObject.transform.tag == "Teleporter")
+        {
+            _expandedMovementProvider.teleport = true;
         }
     }
     protected override void OnSelectExited(SelectExitEventArgs args)
