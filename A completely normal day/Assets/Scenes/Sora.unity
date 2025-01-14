@@ -827,7 +827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &806942999
 Transform:
   m_ObjectHideFlags: 0
@@ -1934,11 +1934,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prikbord
       objectReference: {fileID: 0}
-    - target: {fileID: 678442023256796295, guid: 2cc9cbda7fc2c2047b655eee4b6ae953,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 958743738654883739, guid: 2cc9cbda7fc2c2047b655eee4b6ae953,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1949,6 +1944,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 701672961}
+    - target: {fileID: 1102708425007812562, guid: 2cc9cbda7fc2c2047b655eee4b6ae953,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8506299881866198013, guid: 2cc9cbda7fc2c2047b655eee4b6ae953,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2050,11 +2050,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5326352140069547553, guid: 1646f461294de43c38768305d6cec6af,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1646f461294de43c38768305d6cec6af, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
