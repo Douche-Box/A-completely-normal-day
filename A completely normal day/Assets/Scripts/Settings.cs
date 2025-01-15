@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
@@ -96,6 +97,11 @@ public class Settings : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    public void ResetBtn()
+    {
+        SceneManager.LoadScene(0);
     }
 
     #region Audio

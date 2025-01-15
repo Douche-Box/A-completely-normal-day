@@ -27,6 +27,12 @@ public class WalkieTalkie : MonoBehaviour
 
     [SerializeField] GameObject _loseObject;
 
+    [SerializeField] GameObject _prikBordUI;
+
+    [SerializeField] GameObject _bulletinBoard;
+
+    [SerializeField] GameObject[] _uiHands;
+
     private void OnEnable()
     {
         _talkValueRightHand.action.started += OnTalkRight;
@@ -83,15 +89,27 @@ public class WalkieTalkie : MonoBehaviour
                 if (_winObject != null)
                 {
                     _winObject.SetActive(true);
+                    _prikBordUI.SetActive(true);
+                    _bulletinBoard.SetActive(false);
+                    for (int i = 0; i < _uiHands.Length; i++)
+                    {
+                        _uiHands[i].SetActive(true);
+                    }
                 }
             }
-            else
+            else if (!_hasWon)
             {
                 Debug.Log("You lose");
 
                 if (_loseObject != null)
                 {
                     _loseObject.SetActive(true);
+                    _prikBordUI.SetActive(true);
+                    _bulletinBoard.SetActive(false);
+                    for (int i = 0; i < _uiHands.Length; i++)
+                    {
+                        _uiHands[i].SetActive(true);
+                    }
                 }
             }
         }

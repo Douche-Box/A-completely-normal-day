@@ -14,6 +14,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
     [SerializeField] PolaroidCamera _polaroidCamera;
 
     [SerializeField] Collider _collider;
+    [SerializeField] Rigidbody _rigidbody;
 
     protected override void Awake()
     {
@@ -21,18 +22,22 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
 
         _polaroidCamera = GetComponent<PolaroidCamera>();
         _collider = GetComponent<Collider>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
-        base.OnSelectEntered(args);
-
+        transform.SetParent(null);
+        _rigidbody.isKinematic = false;
         _collider.isTrigger = false;
+
+        base.OnSelectEntered(args);
 
         if (args.interactorObject.transform.name == "LeftHand Controller")
         {
             _leftCameraHand.SetActive(true);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(false);
+
             if (_polaroidCamera != null)
             {
                 _polaroidCamera.LeftHand = args.interactorObject.transform.gameObject;
@@ -52,14 +57,18 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
     }
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
+
         base.OnSelectExited(args);
 
+        transform.SetParent(null);
         _collider.isTrigger = false;
+        _rigidbody.isKinematic = false;
 
         if (args.interactorObject.transform.name == "LeftHand Controller")
         {
             _leftCameraHand.SetActive(false);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(true);
+
             if (_polaroidCamera != null)
             {
                 _polaroidCamera.LeftHand = null;
@@ -69,6 +78,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
         {
             _rightCameraHand.SetActive(false);
             args.interactorObject.transform.GetChild(0).gameObject.SetActive(true);
+
             if (_polaroidCamera != null)
             {
                 _polaroidCamera.RightHand = null;
@@ -78,6 +88,7 @@ public class XRPolaroidCameraInteractable : XRGrabInteractable
         if (_cameraClip != null)
         {
             _collider.isTrigger = true;
+            _rigidbody.isKinematic = true;
             _cameraClip.AttachToBelt();
         }
     }

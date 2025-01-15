@@ -81,28 +81,37 @@ public class BulletinBoard : MonoBehaviour
                 if (_cluesNeeded[y].cluePercentage >= 100)
                 {
                     _cluesNeeded[y].validClue = true;
-                    CheckForWin();
                 }
             }
         }
+
+        for (int i = 0; i < _cluesNeeded.Length; i++)
+        {
+            if (_cluesNeeded[i].cluePercentage >= 100)
+            {
+                _cluesNeeded[i].validClue = true;
+            }
+        }
+
+        CheckForWin();
     }
 
     void CheckForWin()
     {
         _walkieTalkie.CanWin = false;
 
-        // Early exit if we don't have enough clues
-        if (_cluesOnBoard.Count < _cluesNeeded.Length)
-        {
-            return;
-        }
+        // // Early exit if we don't have enough clues
+        // if (_cluesOnBoard.Count < _cluesNeeded.Length)
+        // {
+        //     return;
+        // }
 
-        // Filter to only valid clues first
-        var validClues = _cluesNeeded.Where(c => c.validClue).ToList();
-        if (validClues.Count < _cluesNeeded.Length)
-        {
-            return;
-        }
+        // // Filter to only valid clues first
+        // var validClues = _cluesNeeded.Where(c => c.validClue).ToList();
+        // if (validClues.Count < _cluesNeeded.Length)
+        // {
+        //     return;
+        // }
 
         for (int i = 0; i < _cluesNeeded.Length; i++)
         {

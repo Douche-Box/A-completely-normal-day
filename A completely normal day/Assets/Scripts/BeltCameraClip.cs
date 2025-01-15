@@ -19,6 +19,11 @@ public class BeltCameraClip : MonoBehaviour
     {
         if (other.CompareTag("PolaroidCamera"))
         {
+            if (_xrPolaroidCameraInteractable == null)
+            {
+                return;
+            }
+
             _xrPolaroidCameraInteractable.CameraClip = null;
             _xrPolaroidCameraInteractable = null;
         }
@@ -26,8 +31,8 @@ public class BeltCameraClip : MonoBehaviour
 
     public void AttachToBelt()
     {
-        transform.SetParent(_xrPolaroidCameraInteractable.transform, true);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
+        _xrPolaroidCameraInteractable.transform.SetParent(transform);
+        _xrPolaroidCameraInteractable.transform.position = transform.position;
+        _xrPolaroidCameraInteractable.transform.up = transform.forward;
     }
 }
