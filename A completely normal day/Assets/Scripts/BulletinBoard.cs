@@ -43,9 +43,12 @@ public class BulletinBoard : MonoBehaviour
                 {
                     Debug.Log("Step 3");
 
-                    _cluesOnBoard.Add(clueInfo);
+                    if (!_cluesOnBoard.Contains(clueInfo))
+                    {
+                        _cluesOnBoard.Add(clueInfo);
 
-                    CheckForPhotoClueQuality();
+                        CheckForPhotoClueQuality();
+                    }
                 }
             }
         }
