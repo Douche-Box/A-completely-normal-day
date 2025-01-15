@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 1501769923476197467}
   - component: {fileID: 8678881401328638434}
   - component: {fileID: 8347167399313172079}
-  - component: {fileID: 3488071946548686354}
+  - component: {fileID: 8683630853042772854}
   m_Layer: 0
   m_Name: Win
   m_TagString: Untagged
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &3488071946548686354
+--- !u!114 &8683630853042772854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,14 +535,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 622337619876370044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &882452541872872057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,11 +1014,11 @@ MonoBehaviour:
     left.
 
 
-    Call the police using the phone on the desk.
+    Call the police using the walkie talkie on the desk.
 
 
-    Make sure you
-    have enouh evidence.'
+    Make sure
+    you have enouh evidence.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0718f00de27a7468684d631d1bb60f3f, type: 2}
   m_sharedMaterial: {fileID: -8434512917089779862, guid: 0718f00de27a7468684d631d1bb60f3f,
@@ -1695,6 +1697,54 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1102708425007812562}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2795,7 +2845,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5792817825244496135}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4831381138172915064}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: ResetBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5115889465966182531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,6 +3131,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7380724254675399467}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4831381138172915064}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: QuitBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3579,7 +3653,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4211853681130815202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4831381138172915064}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: ResetBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5716473211637960845
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,6 +4309,7 @@ GameObject:
   - component: {fileID: 8915235604063538434}
   - component: {fileID: 818904492239240622}
   - component: {fileID: 3439622243183290734}
+  - component: {fileID: 4831381138172915064}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4316,6 +4403,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &4831381138172915064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600888373388373428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec83eb21de9b0a44786394a6a7cbd256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStats: {fileID: 0}
+  _audioMixer: {fileID: 0}
+  _masterInput: {fileID: 0}
+  _musicInput: {fileID: 0}
+  _sfxInput: {fileID: 0}
+  _masterSlider: {fileID: 0}
+  _musicSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _audioPanel: {fileID: 0}
+  _snapOrSmooth: 0
+  _snapAngle: 0
+  _smoothSpeed: 0
 --- !u!1 &7750220082065048553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,7 +4513,7 @@ GameObject:
   - component: {fileID: 2518948719873124717}
   - component: {fileID: 3558125103220527188}
   - component: {fileID: 8176052774438313708}
-  - component: {fileID: 3717464417811758759}
+  - component: {fileID: 7136921859708107754}
   m_Layer: 0
   m_Name: Lose
   m_TagString: Untagged
@@ -4476,7 +4587,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &3717464417811758759
+--- !u!114 &7136921859708107754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4485,14 +4596,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8471391848518045450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &8626295472235534510
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,17 +5121,17 @@ PrefabInstance:
     - target: {fileID: 1685350963705820010, guid: b90357b7aa09eae46bd726647480ac05,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.07472372
       objectReference: {fileID: 0}
     - target: {fileID: 1685350963705820010, guid: b90357b7aa09eae46bd726647480ac05,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.175
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1685350963705820010, guid: b90357b7aa09eae46bd726647480ac05,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.75
+      value: 4.344099
       objectReference: {fileID: 0}
     - target: {fileID: 1685350963705820010, guid: b90357b7aa09eae46bd726647480ac05,
         type: 3}

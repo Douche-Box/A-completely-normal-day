@@ -12,19 +12,12 @@ public class PolaroidCamera : MonoBehaviour
     [SerializeField] int photoWidth = 512;
     [SerializeField] int photoHeight = 512;
 
-    [SerializeField] LayerMask _clueLayerMask;
-
     [SerializeField] GameObject _leftHand;
     public GameObject LeftHand
     { get { return _leftHand; } set { _leftHand = value; OnLeftHandChanged?.Invoke(value); } }
     [SerializeField] GameObject _rightHand;
     public GameObject RightHand
     { get { return _rightHand; } set { _rightHand = value; OnRightHandChanged?.Invoke(value); } }
-
-    [SerializeField] AudioSource _audioSource;
-
-    [SerializeField] AudioClip _takePhotoClip;
-    [SerializeField] AudioClip _failTakePhotoClip;
 
     [SerializeField] InputActionProperty _pinchValue;
 
@@ -81,9 +74,13 @@ public class PolaroidCamera : MonoBehaviour
         }
     }
 
-    void OnLeftHandChange(GameObject leftController) { }
+    void OnLeftHandChange(GameObject leftController)
+    {
+    }
 
-    void OnRightHandChange(GameObject rightController) { }
+    void OnRightHandChange(GameObject rightController)
+    {
+    }
 
     void OnCurrentPhotoChange(Polaroid polaroid)
     {
@@ -102,12 +99,6 @@ public class PolaroidCamera : MonoBehaviour
     {
         if (_canTakePhoto)
         {
-            if (_audioSource != null && _takePhotoClip != null)
-            {
-                _audioSource.clip = _takePhotoClip;
-                _audioSource.Play();
-            }
-
             _canTakePhoto = false;
             RenderTexture tempRenderTexture = new RenderTexture(photoWidth, photoHeight, 24);
 
@@ -141,29 +132,40 @@ public class PolaroidCamera : MonoBehaviour
 
             polaroid.CreatePhoto(photoTexture);
         }
-        else if (_audioSource != null && _failTakePhotoClip != null)
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Polaroid"))
         {
-            _audioSource.clip = _failTakePhotoClip;
-            _audioSource.Play();
+            other.GetComponent<Rigidbody>().isKinematic = false;
+            other.transform.SetParent(null);
+            _canTakePhoto = true;
+            _frontCollider.isTrigger = false;
         }
     }
 
-    void CheckForCluePoints(Polaroid newPolaroid)
+    void CheckForCluePoints(Polaroid newPolaroid) // CHECK IF THIS NEW VERSION WORKS
     {
         List<Clue> clues = new();
         List<int> clueAmounts = new();
 
-        int clueAmount = 0;
         foreach (GameObject clueObject in _objectsInView)
         {
             if (clueObject != null)
             {
+                Debug.Log("Clue object != null");
                 Clue clue = clueObject.GetComponent<Clue>();
+
 
                 if (clue != null)
                 {
+                    Debug.Log("Clue != null");
+
+                    int clueAmount = 0;
 
                     clues.Add(clue);
+                    Debug.Log("Clue added to Clues");
 
                     foreach (Transform cluePoint in clue.CluePoints)
                     {
@@ -171,7 +173,7 @@ public class PolaroidCamera : MonoBehaviour
                         Vector3 directionToCamera = (_polaroidCamera.transform.position - cluePointPosition).normalized;
 
                         Ray ray = new Ray(cluePointPosition, directionToCamera);
-                        if (Physics.Raycast(ray, out RaycastHit hit, _clueLayerMask))
+                        if (Physics.Raycast(ray, out RaycastHit hit))
                         {
                             if (hit.collider != null && hit.collider.gameObject == gameObject)
                             {
@@ -179,19 +181,14 @@ public class PolaroidCamera : MonoBehaviour
                             }
                         }
                     }
+
+                    Debug.Log($"ClueAmount added to ClueAmounts with an amount of {clueAmount}");
                     clueAmounts.Add(clueAmount);
                 }
             }
         }
 
-        if (clueAmount == 0)
-        {
-            return;
-        }
-        else
-        {
-            newPolaroid.InitializePhoto(clues, clueAmounts);
-        }
+        newPolaroid.InitializePhoto(clues, clueAmounts);
     }
 
 
@@ -214,5 +211,7 @@ public class PolaroidCamera : MonoBehaviour
                 _objectsInView.Add(obj);
             }
         }
+
+        Debug.Log($"Objects in view: {_objectsInView.Count}");
     }
 }

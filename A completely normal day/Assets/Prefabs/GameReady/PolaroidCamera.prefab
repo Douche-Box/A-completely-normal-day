@@ -404,6 +404,7 @@ MonoBehaviour:
   _rightCameraHand: {fileID: 8434885386447440852}
   _polaroidCamera: {fileID: 0}
   _collider: {fileID: 0}
+  _rigidbody: {fileID: 0}
 --- !u!114 &7199480305664683021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +425,7 @@ MonoBehaviour:
   photoHeight: 512
   _clueLayerMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 129
   _leftHand: {fileID: 0}
   _rightHand: {fileID: 0}
   _audioSource: {fileID: 0}
